@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Mobile Legends</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+
+            background-image: url("702472b8a9885241cf20678b50541f0d.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            min-height: 100vh;
+        }
+
+
+        h1 {
+            font-size: 50px;
+            margin: 10px 0;
+
+            color: #ffffff;
+
+            text-shadow:
+                2px 2px 0 #1b5e20,
+                4px 4px 0 #0d3510,
+                0 0 10px rgba(79, 242, 60, 0.8);
+        }
+       h2 {
+        font-size: 30px;
+        margin: 10px 0;
+
+          color: #ffffff;
+
+            text-shadow:
+                2px 2px 0 #1b5e20,
+                4px 4px 0 #0d3510,
+                0 0 10px rgba(79, 242, 60, 0.8);
+       }
+
+        p {
+            font-size: 18px;
+            margin: 8px;
+            color: #ffffff;
+        }
+
+
+        #score {
+            color: #4ff23c;
+            font-size: 32px;
+
+            text-shadow:
+                2px 2px 0 #145c0d,
+                4px 4px 0 #082b05,
+                0 0 8px rgba(79, 242, 60, 0.8);
+        }
+
+
+        #level {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4ff23c;
+
+            text-shadow:
+                2px 2px 0 #145c0d,
+                3px 3px 0 #082b05;
+        }
+
+
+        #game {
+            width: min(70vw, 250px);
+            height: min(70vw, 250px);
+
+            margin: 15px auto;
+
+            display: grid;
+            gap: 5px;
+
+            touch-action: manipulation;
+        }
+
+
+        .box {
+            width: 100%;
+            height: 100%;
+
+            border: 2px solid white;
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            transition: transform 0.08s;
+        }
+
+
+        .box:active {
+            transform: scale(0.92);
+        }
+
+
+        button {
+            width: 90%;
+            max-width: 400px;
+
+            padding: 17px;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(
+                #69ff58,
+                #4ff23c
+            );
+
+            color: white;
+
+            cursor: pointer;
+
+            text-shadow:
+                2px 2px 0 #237519,
+                3px 3px 0 #164d10;
+
+            box-shadow:
+                0 5px 0 #237519,
+                0 8px 12px rgba(0, 0, 0, 0.5);
+        }
+
+
+        button:active {
+            transform: translateY(4px) scale(0.97);
+
+            box-shadow:
+                0 2px 0 #237519,
+                0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 28px;
+            color: #ffffff;
+
+            text-shadow:
+                2px 2px 0 #222222,
+                3px 3px 0 #000000;
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 8px;
+            }
+
+
+            h1 {
+                font-size: 26px;
+            }
+
+
+            #game {
+                width: 94vw;
+                height: 94vw;
+                gap: 4px;
+            }
+
+
+            .box {
+                border-width: 1px;
+                border-radius: 4px;
+            }
+
+
+            button {
+                font-size: 22px;
+                padding: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Mobile Legends</h1>
+
+    <p>Find the different color</p>
+
+    <h2>
+        Score:
+        <span id="score">0</span>
+    </h2>
+
+    <div id="level">Level: 4 × 4</div>
+
+    <div id="game"></div>
+
+    <p id="message">Press START to begin</p>
+
+    <button onclick="startGame()">START GAME</button>
+
+
+<script>
+
+var score = 0;
+var gridSize = 6;
+
+
+function startGame() {
+
+    score = 0;
+    gridSize = 6;
+
+    document.getElementById("score").innerHTML = score;
+
+    document.getElementById("message").innerHTML =
+        "Find the different color";
+
+    newRound();
+}
+
+
+function newRound() {
+
+    var game = document.getElementById("game");
+
+    game.innerHTML = "";
+
+    game.style.gridTemplateColumns =
+        "repeat(" + gridSize + ", 1fr)";
+
+    game.style.gridTemplateRows =
+        "repeat(" + gridSize + ", 1fr)";
+
+    document.getElementById("level").innerHTML =
+        "Level: " + gridSize + " × " + gridSize;
+
+
+    var colors = [
+
+        [255, 0, 0],
+        [0, 120, 255],
+        [0, 180, 80],
+        [150, 0, 200],
+        [255, 140, 0],
+        [255, 200, 0],
+        [0, 180, 180],
+        [255, 105, 180]
+
+    ];
+
+
+    var color =
+        colors[Math.floor(Math.random() * colors.length)];
+
+
+    var r = color[0];
+    var g = color[1];
+    var b = color[2];
+
+
+    var difference;
+
+
+    if (score < 4) {
+
+        difference = 60;
+
+    }
+    else if (score < 10) {
+
+        difference = 50;
+
+    }
+    else if (score < 15) {
+
+        difference = 40;
+
+    }
+    else if (score < 20) {
+
+        difference = 32;
+
+    }
+    else if (score < 30) {
+
+        difference = 25;
+
+    }
+    else {
+
+        difference = 20;
+
+    }
+
+
+    var differentR;
+    var differentG;
+    var differentB;
+
+
+    if (
+        r + difference <= 255 &&
+        g + difference <= 255 &&
+        b + difference <= 255
+    ) {
+
+        differentR = r + difference;
+        differentG = g + difference;
+        differentB = b + difference;
+
+    }
+    else {
+
+        differentR = Math.max(0, r - difference);
+        differentG = Math.max(0, g - difference);
+        differentB = Math.max(0, b - difference);
+
+    }
+
+
+    var totalBoxes = gridSize * gridSize;
+
+    var answer =
+        Math.floor(Math.random() * totalBoxes);
+
+
+    for (var i = 0; i < totalBoxes; i++) {
+
+        var box =
+            document.createElement("div");
+
+        box.className = "box";
+
+
+        if (i == answer) {
+
+            box.style.backgroundColor =
+                "rgb(" +
+                differentR + "," +
+                differentG + "," +
+                differentB +
+                ")";
+
+
+            box.onclick = function() {
+
+                score++;
+
+                document.getElementById("score")
+                    .innerHTML = score;
+
+                document.getElementById("message")
+                    .innerHTML = "Correct!";
+
+
+                if (score % 5 == 0) {
+
+                    gridSize++;
+
+                }
+
+                newRound();
+
+            };
+
+        }
+
+        else {
+
+            box.style.backgroundColor =
+                "rgb(" +
+                r + "," +
+                g + "," +
+                b +
+                ")";
+
+
+            box.onclick = function() {
+
+                document.getElementById("message")
+                    .innerHTML =
+                    "Wrong! Try again.";
+
+            };
+
+        }
+
+
+        game.appendChild(box);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

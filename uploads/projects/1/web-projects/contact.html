@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CCTE - Contact</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#f5f6f8;
+  color:#222;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 60px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e6e6e6;
+  z-index:1000;
+}
+
+header img{height:55px;}
+
+nav a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#ff7a00;
+}
+
+/* CONTAINER */
+.container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:120px 10% 60px;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+/* FORM */
+.form{
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  width:340px;
+  border:1px solid #eee;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+input, textarea{
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  outline:none;
+  font-size:0.95rem;
+}
+
+textarea{
+  resize:none;
+  height:120px;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:12px;
+  background:#ff7a00;
+  border:none;
+  color:white;
+  border-radius:10px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#e66900;
+  transform:translateY(-2px);
+}
+
+/* INFO */
+.info{
+  max-width:420px;
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  border:1px solid #eee;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.info h2{
+  color:#ff7a00;
+  margin-bottom:15px;
+}
+
+.info p{
+  margin:8px 0;
+  color:#555;
+  line-height:1.6;
+}
+
+.highlight{
+  font-weight:600;
+  color:#333;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:25px;
+  background:#1f1f1f;
+  color:#aaa;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="lcclogo.png">
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="program.html">Programs</a>
+    <a href="event.html">Events</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <img src="deptlogo.png">
+</header>
+
+<!-- CONTACT -->
+<div class="container">
+
+  <!-- FORM (CLICKABLE / FUNCTIONAL) -->
+  <form class="form" onsubmit="sendMessage(event)">
+    <h2 style="color:#ff7a00; margin-bottom:10px;">Send Message</h2>
+
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <textarea id="message" placeholder="Message" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <!-- INFO -->
+  <div class="info">
+    <h2>Get in Touch</h2>
+
+    <p><span class="highlight">College:</span> College of Computing and Technology Engineering</p>
+    <p><span class="highlight">School:</span> Lipa City Colleges</p>
+    <p><span class="highlight">Email:</span> ccte@email.com</p>
+    <p><span class="highlight">Phone:</span> 0912-345-6789</p>
+    <p><span class="highlight">Address:</span> Lipa City, Batangas, Philippines</p>
+    <p><span class="highlight">Office Hours:</span> Monday to Friday, 8:00 AM - 5:00 PM</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 College of Computing & Technology Engineering | Lipa City Colleges
+</footer>
+
+<!-- FUNCTION -->
+<script>
+function sendMessage(event){
+  event.preventDefault();
+
+  let name = document.getElementById("name").value;
+
+  alert("Thank you " + name + "! Your message has been sent.");
+
+  document.querySelector("form").reset();
+}
+</script>
+
+</body>
+</html>

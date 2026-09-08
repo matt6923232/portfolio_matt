@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyValenTine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #ffe9ef, #ff9fb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* =========================
+       BACK BUTTON
+    ========================= */
+
+    .back-button {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(255, 255, 255, 0.75);
+      color: #ff2f55;
+
+      border: 1px solid rgba(255, 47, 85, 0.2);
+      border-radius: 50%;
+
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 500;
+
+      box-shadow: 0 6px 18px rgba(255, 0, 80, 0.18);
+
+      z-index: 1000;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .back-button:hover {
+      transform: translateX(-3px);
+      background: #ffffff;
+      box-shadow: 0 8px 22px rgba(255, 0, 80, 0.28);
+    }
+
+    .back-button:active {
+      transform: scale(0.92);
+    }
+
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 18px;
+      animation: rise 8s linear infinite;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(0.7);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-120vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+
+    /* FRAME */
+    .frame {
+      padding: 14px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, #ff6f91, #ff2f55);
+      box-shadow: 0 30px 60px rgba(255, 0, 80, 0.35);
+      animation: framePop 1.2s cubic-bezier(.17,.89,.32,1.49);
+    }
+
+    @keyframes framePop {
+      0% {
+        transform: scale(0.6) translateY(40px);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1.05) translateY(-6px);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+
+    /* MAIL CARD */
+    .mail {
+      background: linear-gradient(145deg, #fff6f9, #ffe1ea);
+      width: 90%;
+      max-width: 440px;
+      padding: 38px 32px 42px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7);
+      position: relative;
+    }
+
+
+    /* STAMP */
+    .stamp {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 54px;
+      height: 54px;
+      background: radial-gradient(circle, #ff7a95, #ff2f55);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 10px 25px rgba(255,0,80,0.45);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+
+    /* GIF */
+    .gif {
+      width: 160px;
+      max-width: 80%;
+      border-radius: 20px;
+      margin: 10px auto 18px;
+      box-shadow: 0 12px 30px rgba(255,0,80,0.35);
+      animation: breathe 3s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.06);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      color: #ff2f55;
+      margin: 10px 0 8px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+
+    /* BUTTONS */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    button {
+      padding: 15px;
+      border-radius: 35px;
+      border: none;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff5c7c, #ff1f4b);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(255,0,80,0.45);
+      animation: heartbeat 1.6s infinite;
+    }
+
+    .yes:hover {
+      transform: scale(1.07);
+    }
+
+    .no {
+      background: #ffe3eb;
+      color: #ff2f55;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    @keyframes heartbeat {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255,47,85,0.6);
+      }
+
+      70% {
+        box-shadow: 0 0 0 26px rgba(255,47,85,0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(255,47,85,0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- BACK BUTTON -->
+<a
+  href="../color.html"
+  class="back-button"
+  aria-label="Back to Projects"
+  title="Back to Projects"
+>
+  ←
+</a>
+
+
+<script>
+  const hearts = ["💖","💗","💘","❤️"];
+
+  setInterval(() => {
+
+    const h = document.createElement("div");
+
+    h.className = "heart";
+
+    h.innerText =
+      hearts[
+        Math.floor(
+          Math.random() * hearts.length
+        )
+      ];
+
+    h.style.left =
+      Math.random() * 100 + "vw";
+
+    h.style.animationDuration =
+      (6 + Math.random() * 4) + "s";
+
+    document.body.appendChild(h);
+
+    setTimeout(() => h.remove(), 10000);
+
+  }, 500);
+</script>
+
+
+<div class="frame">
+
+  <div class="mail">
+
+    <div class="stamp">
+      💌
+    </div>
+
+    <img
+      src="giphy.gif"
+      alt="Love GIF"
+      class="gif"
+    >
+
+    <h1>
+      <b>Happy Valentine’s baby Tine ko</b> 💕
+    </h1>
+
+    <p>
+      Do u want to see ur present?
+    </p>
+
+    <div class="buttons">
+
+      <button
+        class="yes"
+        onclick="location.href='yes.html'"
+      >
+        Yes baby ❤️
+      </button>
+
+      <button
+        class="no"
+        id="noBtn"
+      >
+        No thanks😝😝
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- NO BUTTON SCRIPT (DESKTOP + MOBILE) -->
+<script>
+
+  const noBtn =
+    document.getElementById("noBtn");
+
+
+  function moveNoButton() {
+
+    const padding = 20;
+
+    const maxX =
+      window.innerWidth -
+      noBtn.offsetWidth -
+      padding;
+
+    const maxY =
+      window.innerHeight -
+      noBtn.offsetHeight -
+      padding;
+
+
+    const x =
+      Math.random() * maxX;
+
+    const y =
+      Math.random() * maxY;
+
+
+    noBtn.style.position = "fixed";
+
+    noBtn.style.left =
+      x + "px";
+
+    noBtn.style.top =
+      y + "px";
+
+  }
+
+
+  // Desktop
+  noBtn.addEventListener(
+    "mouseenter",
+    moveNoButton
+  );
+
+  noBtn.addEventListener(
+    "click",
+    moveNoButton
+  );
+
+
+  // Mobile
+  noBtn.addEventListener(
+    "touchstart",
+    moveNoButton
+  );
+
+  noBtn.addEventListener(
+    "touchmove",
+    moveNoButton
+  );
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Color Game | Maneclang</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            height: 90px;
+            background: #111111;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 9%;
+
+            border-bottom: 1px solid #333;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        .logo {
+            margin: 0;
+            color: white;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+
+        nav a {
+            color: #aaa;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover,
+        nav a.active {
+            color: white;
+        }
+
+
+        /* ICONS */
+
+        nav a span {
+            margin-left: 5px;
+        }
+
+
+        /* TOGGLE */
+
+        #menu-toggle {
+            display: none;
+        }
+
+
+        .menu-icon {
+            display: none;
+
+            color: white;
+            font-size: 24px;
+
+            cursor: pointer;
+
+            user-select: none;
+        }
+
+
+        /* =========================
+           GAME
+        ========================= */
+
+        .game-container {
+            padding: 20px 10px 60px;
+
+            min-height: calc(100vh - 90px);
+        }
+
+
+        h1 {
+            font-size: 50px;
+            margin: 10px 0;
+
+            color: #ffffff;
+
+            text-shadow:
+                2px 2px 0 #1b5e20,
+                4px 4px 0 #0d3510,
+                0 0 10px rgba(79, 242, 60, 0.8);
+        }
+
+
+        h2 {
+            font-size: 30px;
+            margin: 10px 0;
+
+            color: #ffffff;
+
+            text-shadow:
+                2px 2px 0 #1b5e20,
+                4px 4px 0 #0d3510,
+                0 0 10px rgba(79, 242, 60, 0.8);
+        }
+
+
+        p {
+            font-size: 18px;
+            margin: 8px;
+            color: #ffffff;
+        }
+
+
+        #score {
+            color: #4ff23c;
+            font-size: 32px;
+
+            text-shadow:
+                2px 2px 0 #145c0d,
+                4px 4px 0 #082b05,
+                0 0 8px rgba(79, 242, 60, 0.8);
+        }
+
+
+        #level {
+            font-size: 22px;
+            font-weight: bold;
+
+            color: #4ff23c;
+
+            text-shadow:
+                2px 2px 0 #145c0d,
+                3px 3px 0 #082b05;
+        }
+
+
+        #game {
+            width: min(70vw, 250px);
+            height: min(70vw, 250px);
+
+            margin: 15px auto;
+
+            display: grid;
+            gap: 5px;
+
+            touch-action: manipulation;
+        }
+
+
+        .box {
+            width: 100%;
+            height: 100%;
+
+            border: 2px solid white;
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            transition: transform 0.08s;
+        }
+
+
+        .box:active {
+            transform: scale(0.92);
+        }
+
+
+        button {
+            width: 90%;
+            max-width: 400px;
+
+            padding: 17px;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(
+                #69ff58,
+                #4ff23c
+            );
+
+            color: white;
+
+            cursor: pointer;
+
+            text-shadow:
+                2px 2px 0 #237519,
+                3px 3px 0 #164d10;
+
+            box-shadow:
+                0 5px 0 #237519,
+                0 8px 12px rgba(0, 0, 0, 0.5);
+        }
+
+
+        button:active {
+            transform: translateY(4px) scale(0.97);
+
+            box-shadow:
+                0 2px 0 #237519,
+                0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+
+            min-height: 28px;
+
+            color: #ffffff;
+
+            text-shadow:
+                2px 2px 0 #222222,
+                3px 3px 0 #000000;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        #backButton {
+            display: block;
+
+            margin: 15px auto 0;
+
+            text-decoration: none;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           PHONE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 0;
+
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+
+            /* NAVBAR */
+
+            nav {
+                height: 65px;
+                padding: 0 18px;
+            }
+
+
+            .logo {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+
+
+            /* HAMBURGER */
+
+            .menu-icon {
+                display: block;
+            }
+
+
+            /* DROPDOWN MENU */
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+
+                top: 65px;
+                right: 18px;
+
+                width: 150px;
+
+                background: rgba(17, 17, 17, 0.85);
+
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+
+                flex-direction: column;
+
+                gap: 0;
+
+                padding: 8px 0;
+
+                border: 1px solid rgba(255, 255, 255, 0.15);
+
+                border-radius: 8px;
+
+                z-index: 1001;
+            }
+
+
+            /* SHOW MENU */
+
+            #menu-toggle:checked ~ .nav-links {
+                display: flex;
+            }
+
+
+            .nav-links a {
+                display: block;
+
+                padding: 10px 15px;
+
+                font-size: 11px;
+
+                letter-spacing: 0.5px;
+
+                text-align: center;
+
+                transition: 0.2s;
+            }
+
+
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+
+            /* GAME */
+
+            .game-container {
+                padding: 15px 8px 60px;
+            }
+
+
+            h1 {
+                font-size: 28px;
+                margin: 10px 0;
+            }
+
+
+            h2 {
+                font-size: 24px;
+                margin: 8px 0;
+            }
+
+
+            p {
+                font-size: 16px;
+                margin: 5px;
+            }
+
+
+            #score {
+                font-size: 28px;
+            }
+
+
+            #level {
+                font-size: 18px;
+            }
+
+
+            #game {
+                width: 82vw;
+                height: 82vw;
+
+                max-width: 300px;
+                max-height: 300px;
+
+                margin: 12px auto;
+
+                gap: 4px;
+            }
+
+
+            .box {
+                border-width: 1px;
+                border-radius: 4px;
+            }
+
+
+            #message {
+                font-size: 17px;
+                min-height: 24px;
+            }
+
+
+            button {
+                width: 85%;
+
+                padding: 14px;
+
+                font-size: 19px;
+
+                margin-bottom: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="navbar-left">
+
+            <div
+                id="profile-placeholder"
+                aria-hidden="true"
+            ></div>
+
+            <div class="logo">
+                MANECLANG
+            </div>
+
+        </div>
+
+
+        <input
+            type="checkbox"
+            id="menu-toggle"
+        >
+
+
+        <label
+            for="menu-toggle"
+            class="menu-icon"
+        >
+            ☰
+        </label>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                ⌂ <span>HOME</span>
+            </a>
+
+            <a href="about.html">
+                👤 <span>ABOUT</span>
+            </a>
+
+            <a
+                href="color.html"
+                class="active"
+            >
+                ▣ <span>PROJECTS</span>
+            </a>
+
+            <a href="contact.html">
+                ✉ <span>CONTACT</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- GAME -->
+
+    <div class="game-container">
+
+        <h1>
+            Color Game
+        </h1>
+
+
+        <p>
+            Find the different color
+        </p>
+
+
+        <h2>
+            Score:
+            <span id="score">0</span>
+        </h2>
+
+
+        <div id="level">
+            Level: 6 × 6
+        </div>
+
+
+        <div id="game"></div>
+
+
+        <p id="message">
+            Press START to begin
+        </p>
+
+
+        <!-- START / CANCEL BUTTON -->
+
+        <button
+            id="gameButton"
+            type="button"
+            onclick="toggleGame()"
+        >
+            START GAME
+        </button>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            id="backButton"
+            href="color.html"
+        >
+            <button type="button">
+              ⬅
+            </button>
+        </a>
+
+    </div>
+
+
+    <script>
+
+        var score = 0;
+
+        var gridSize = 6;
+
+        var gameStarted = false;
+
+
+        /* =========================
+           START / CANCEL
+        ========================= */
+
+        function toggleGame() {
+
+            if (gameStarted) {
+
+                cancelGame();
+
+            }
+
+            else {
+
+                startGame();
+
+            }
+
+        }
+
+
+        /* =========================
+           START GAME
+        ========================= */
+
+        function startGame() {
+
+            gameStarted = true;
+
+            score = 0;
+
+            gridSize = 6;
+
+
+            document.getElementById("score")
+                .innerHTML = score;
+
+
+            document.getElementById("message")
+                .innerHTML =
+                "Find the different color";
+
+
+            document.getElementById("gameButton")
+                .innerHTML =
+                "CANCEL GAME";
+
+
+            newRound();
+
+        }
+
+
+        /* =========================
+           CANCEL GAME
+        ========================= */
+
+        function cancelGame() {
+
+            gameStarted = false;
+
+            score = 0;
+
+            gridSize = 6;
+
+
+            document.getElementById("game")
+                .innerHTML = "";
+
+
+            document.getElementById("score")
+                .innerHTML = "0";
+
+
+            document.getElementById("level")
+                .innerHTML =
+                "Level: 6 × 6";
+
+
+            document.getElementById("message")
+                .innerHTML =
+                "Press START to begin";
+
+
+            document.getElementById("gameButton")
+                .innerHTML =
+                "START GAME";
+
+        }
+
+
+        /* =========================
+           NEW ROUND
+        ========================= */
+
+        function newRound() {
+
+            if (!gameStarted) {
+                return;
+            }
+
+
+            var game =
+                document.getElementById("game");
+
+
+            game.innerHTML = "";
+
+
+            game.style.gridTemplateColumns =
+                "repeat(" + gridSize + ", 1fr)";
+
+
+            game.style.gridTemplateRows =
+                "repeat(" + gridSize + ", 1fr)";
+
+
+            document.getElementById("level")
+                .innerHTML =
+                "Level: " +
+                gridSize +
+                " × " +
+                gridSize;
+
+
+            var colors = [
+
+                [255, 0, 0],
+
+                [0, 120, 255],
+
+                [0, 180, 80],
+
+                [150, 0, 200],
+
+                [255, 140, 0],
+
+                [255, 200, 0],
+
+                [0, 180, 180],
+
+                [255, 105, 180]
+
+            ];
+
+
+            var color =
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ];
+
+
+            var r = color[0];
+
+            var g = color[1];
+
+            var b = color[2];
+
+
+            var difference;
+
+
+            if (score < 4) {
+
+                difference = 60;
+
+            }
+
+            else if (score < 10) {
+
+                difference = 50;
+
+            }
+
+            else if (score < 15) {
+
+                difference = 40;
+
+            }
+
+            else if (score < 20) {
+
+                difference = 32;
+
+            }
+
+            else if (score < 30) {
+
+                difference = 25;
+
+            }
+
+            else {
+
+                difference = 20;
+
+            }
+
+
+            var differentR;
+
+            var differentG;
+
+            var differentB;
+
+
+            if (
+
+                r + difference <= 255 &&
+
+                g + difference <= 255 &&
+
+                b + difference <= 255
+
+            ) {
+
+                differentR =
+                    r + difference;
+
+                differentG =
+                    g + difference;
+
+                differentB =
+                    b + difference;
+
+            }
+
+            else {
+
+                differentR =
+                    Math.max(
+                        0,
+                        r - difference
+                    );
+
+                differentG =
+                    Math.max(
+                        0,
+                        g - difference
+                    );
+
+                differentB =
+                    Math.max(
+                        0,
+                        b - difference
+                    );
+
+            }
+
+
+            var totalBoxes =
+                gridSize * gridSize;
+
+
+            var answer =
+                Math.floor(
+                    Math.random() *
+                    totalBoxes
+                );
+
+
+            for (
+                var i = 0;
+                i < totalBoxes;
+                i++
+            ) {
+
+                var box =
+                    document.createElement("div");
+
+
+                box.className =
+                    "box";
+
+
+                if (i == answer) {
+
+                    box.style.backgroundColor =
+                        "rgb(" +
+                        differentR +
+                        "," +
+                        differentG +
+                        "," +
+                        differentB +
+                        ")";
+
+
+                    box.onclick =
+                        function () {
+
+                            if (!gameStarted) {
+                                return;
+                            }
+
+
+                            score++;
+
+
+                            document.getElementById(
+                                "score"
+                            ).innerHTML =
+                                score;
+
+
+                            document.getElementById(
+                                "message"
+                            ).innerHTML =
+                                "Correct!";
+
+
+                            if (
+                                score % 5 == 0
+                            ) {
+
+                                gridSize++;
+
+                            }
+
+
+                            newRound();
+
+                        };
+
+                }
+
+                else {
+
+                    box.style.backgroundColor =
+                        "rgb(" +
+                        r +
+                        "," +
+                        g +
+                        "," +
+                        b +
+                        ")";
+
+
+                    box.onclick =
+                        function () {
+
+                            if (!gameStarted) {
+                                return;
+                            }
+
+
+                            document.getElementById(
+                                "message"
+                            ).innerHTML =
+                                "Wrong! Try again.";
+
+                        };
+
+                }
+
+
+                game.appendChild(box);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

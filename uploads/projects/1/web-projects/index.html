@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<title>CCTE LCC - Welcome</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<!-- PREMIUM FONT PAIRING -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* MAIN FONT SYSTEM */
+
+body{
+  font-family:'Montserrat', sans-serif;
+  background:#f4f4f4;
+  color:#222;
+  overflow-x:hidden;
+}
+
+
+/* HEADER */
+
+.header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e6e6e6;
+  z-index:1000;
+}
+
+.logo{
+  height:55px;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button{
+  position:fixed;
+  top:24px;
+  left:25px;
+
+  z-index:1100;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:38px;
+  height:38px;
+
+  background:rgba(255,255,255,0.85);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  border:1px solid #e6e6e6;
+  border-radius:50%;
+
+  color:#444;
+
+  text-decoration:none;
+
+  font-size:20px;
+  font-weight:600;
+
+  transition:0.3s;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.08);
+}
+
+.back-button:hover{
+  color:#ff7a00;
+
+  border-color:#ff7a00;
+
+  transform:translateX(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(255,122,0,0.18);
+}
+
+.back-button:active{
+  transform:translateX(-3px) scale(0.95);
+}
+
+
+/* HERO */
+
+.hero{
+  height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  position:relative;
+
+  padding:20px;
+
+  background:
+    url('bgm.png') center/cover no-repeat,
+    linear-gradient(
+      135deg,
+      #f7f7f7,
+      #e9e9e9
+    );
+
+  overflow:hidden;
+}
+
+
+/* ORANGE GLOW EFFECT */
+
+.hero::before{
+  content:'';
+
+  position:absolute;
+
+  width:600px;
+  height:600px;
+
+  background:
+    radial-gradient(
+      circle,
+      #ff7a00 0%,
+      transparent 70%
+    );
+
+  top:-150px;
+  left:-150px;
+
+  filter:blur(90px);
+
+  opacity:0.4;
+}
+
+
+.hero::after{
+  content:'';
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  background:
+    radial-gradient(
+      circle,
+      #ff7a00 0%,
+      transparent 70%
+    );
+
+  bottom:-150px;
+  right:-150px;
+
+  filter:blur(100px);
+
+  opacity:0.3;
+}
+
+
+.hero-content{
+  z-index:2;
+  max-width:900px;
+}
+
+
+/* HERO TITLE */
+
+.hero h1{
+  font-family:'Playfair Display', serif;
+
+  font-size:3.6rem;
+
+  font-weight:700;
+
+  color:#333;
+
+  letter-spacing:1px;
+}
+
+
+.hero span{
+  color:#ff7a00;
+}
+
+
+/* SCHOOL NAME */
+
+.school{
+  margin-top:10px;
+
+  font-size:1.1rem;
+
+  font-weight:600;
+
+  color:#444;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+/* MOTTO */
+
+.hero p{
+  margin-top:15px;
+
+  color:#555;
+
+  font-size:1.1rem;
+
+  line-height:1.6;
+}
+
+
+.motto{
+  margin-top:10px;
+
+  font-weight:600;
+
+  color:#ff7a00;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+/* BUTTON */
+
+.btn{
+  display:inline-block;
+
+  margin-top:25px;
+
+  padding:12px 35px;
+
+  background:#ff7a00;
+
+  color:white;
+
+  border-radius:30px;
+
+  text-decoration:none;
+
+  transition:0.3s;
+
+  font-weight:500;
+
+  box-shadow:
+    0 10px 25px
+    rgba(255,122,0,0.25);
+}
+
+
+.btn:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 15px 30px
+    rgba(255,122,0,0.35);
+}
+
+
+/* SECTIONS */
+
+section{
+  padding:100px 12%;
+}
+
+
+.section-title{
+  text-align:center;
+
+  font-size:2rem;
+
+  color:#ff7a00;
+
+  margin-bottom:15px;
+
+  font-weight:700;
+}
+
+
+.section-desc{
+  text-align:center;
+
+  color:#555;
+
+  max-width:750px;
+
+  margin:0 auto 40px;
+
+  line-height:1.7;
+}
+
+
+/* CARDS */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px,1fr)
+    );
+
+  gap:25px;
+}
+
+
+.card{
+  background:white;
+
+  border-radius:15px;
+
+  padding:25px;
+
+  border:1px solid #eee;
+
+  transition:0.3s;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+
+.card::before{
+  content:'';
+
+  position:absolute;
+
+  width:100%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,122,0,0.1),
+      transparent
+    );
+
+  top:0;
+  left:0;
+
+  opacity:0;
+
+  transition:0.3s;
+}
+
+
+.card:hover::before{
+  opacity:1;
+}
+
+
+.card:hover{
+  transform:translateY(-8px);
+
+  border-color:#ff7a00;
+
+  box-shadow:
+    0 15px 30px
+    rgba(0,0,0,0.08);
+}
+
+
+.card h3{
+  margin-bottom:10px;
+
+  color:#333;
+}
+
+
+.card p{
+  color:#666;
+
+  font-size:0.95rem;
+
+  line-height:1.6;
+}
+
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+
+  padding:25px;
+
+  background:#1f1f1f;
+
+  color:#aaa;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .header{
+    padding:12px 20px;
+  }
+
+
+  .logo{
+    height:42px;
+  }
+
+
+  .back-button{
+    top:16px;
+    left:15px;
+
+    width:34px;
+    height:34px;
+
+    font-size:18px;
+  }
+
+
+  .hero h1{
+    font-size:2.4rem;
+  }
+
+
+  .school{
+    font-size:0.9rem;
+
+    letter-spacing:1.5px;
+  }
+
+
+  .hero p{
+    font-size:0.95rem;
+  }
+
+
+  .motto{
+    font-size:0.8rem;
+
+    letter-spacing:1.5px;
+  }
+
+
+  section{
+    padding:70px 8%;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     BACK BUTTON
+========================= -->
+
+<a
+    href="../color.html"
+    class="back-button"
+    aria-label="Back to Projects"
+    title="Back to Projects"
+>
+    ←
+</a>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+  <img
+    src="lcclogo.png"
+    class="logo"
+  >
+
+  <img
+    src="deptlogo.png"
+    class="logo"
+  >
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+  <div class="hero-content">
+
+    <h1>
+      <span>CCTE</span> Department
+    </h1>
+
+
+    <div class="school">
+      Lipa City Colleges
+    </div>
+
+
+    <p>
+      College of Computing & Technology Engineering
+    </p>
+
+
+    <div class="motto">
+      BUILDING CAREERS • CODING THE FUTURE
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section>
+
+  <h2 class="section-title">
+    About CCTE
+  </h2>
+
+
+  <p class="section-desc">
+
+    The College of Computing and Technology Engineering provides students with strong foundations in computing, engineering technology, innovation, and practical problem-solving.
+
+    The department promotes hands-on learning, research, technical skills, teamwork, and global exposure through academic programs and international activities.
+
+  </p>
+
+</section>
+
+
+<!-- MISSION VISION -->
+
+<section>
+
+  <h2 class="section-title">
+    Mission & Vision
+  </h2>
+
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3>
+        Mission
+      </h3>
+
+      <p>
+
+        To develop competent, responsible, and innovative students equipped with technical
+        knowledge, professional values, and industry-ready skills.
+
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Vision
+      </h3>
+
+      <p>
+
+        To become a recognized center of excellence in
+        computing, technology, engineering, innovation, and global academic collaboration.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROGRAMS -->
+
+<section>
+
+  <h2 class="section-title">
+    Programs Offered
+  </h2>
+
+
+  <p class="section-desc">
+
+    CCTE offers specialized programs designed to prepare students for real-world tech and engineering careers.
+
+  </p>
+
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3>
+        BS Computer Science
+      </h3>
+
+      <p>
+        Focus on software development, algorithms, AI, and system design.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        BS Computer Engineering
+      </h3>
+
+      <p>
+        Integration of hardware and software, embedded systems, and digital design.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BUTTON -->
+
+<section
+  style="text-align:center; padding-top:0;"
+>
+
+  <a
+    href="home.html"
+    class="btn"
+  >
+    Explore CCTE
+  </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  © 2026 College of Computing & Technology Engineering |
+  Lipa City Colleges
+
+</footer>
+
+
+</body>
+
+</html>

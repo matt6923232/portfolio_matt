@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CCTE - Home</title>
+<meta charset="UTF-8">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#f4f4f4;
+  color:#222;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 60px;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e6e6e6;
+  z-index:1000;
+}
+
+.logo{height:55px;}
+
+nav a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#ff7a00;
+}
+
+/* HERO */
+.hero{
+  height:85vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  margin-top:80px;
+  background:url('bg.png') center/cover no-repeat;
+}
+
+/* DARK OVERLAY */
+.hero::after{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+}
+
+/* ORANGE GLOW */
+.hero::before{
+  content:'';
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,#ff7a00,transparent 60%);
+  filter:blur(120px);
+  opacity:0.35;
+}
+
+.hero-content{
+  z-index:2;
+  color:white;
+  max-width:800px;
+}
+
+.hero h1{
+  font-size:3.5rem;
+}
+
+.hero span{
+  color:#ff7a00;
+}
+
+.hero p{
+  margin-top:10px;
+  color:#ddd;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:80px 10%;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  border:1px solid #eee;
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,rgba(255,122,0,0.1),transparent);
+  top:0;
+  left:0;
+  opacity:0;
+  transition:0.3s;
+}
+
+.card:hover::before{
+  opacity:1;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:#ff7a00;
+  box-shadow:0 15px 30px rgba(0,0,0,0.1);
+}
+
+.card h3{
+  margin-top:10px;
+  color:#333;
+}
+
+.card p{
+  color:#666;
+  font-size:0.9rem;
+  margin-top:8px;
+}
+
+/* VIDEO SECTION */
+.video-section{
+  padding:80px 10%;
+  text-align:center;
+}
+
+.video-section h2{
+  color:#ff7a00;
+  margin-bottom:20px;
+  font-size:2rem;
+}
+
+.video-section p{
+  color:#666;
+  max-width:700px;
+  margin:0 auto 30px;
+  line-height:1.6;
+}
+
+/* CLEAN VIDEO (NO BLACK BORDER FIX) */
+.video-wrapper{
+  max-width:900px;
+  margin:auto;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  background:#000;
+}
+
+video{
+  width:100%;
+  height:450px;
+  display:block;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:25px;
+  background:#1f1f1f;
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="lcclogo.png" class="logo">
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="program.html">Programs</a>
+    <a href="event.html">Events</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <img src="deptlogo.png" class="logo">
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to <span>CCTE</span></h1>
+    <p>College of Computing & Technology Engineering</p>
+    <p>Innovating Future Developers, Engineers, and Tech Leaders</p>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="card">
+    <h3> Computer Science</h3>
+    <p>Software development, AI, algorithms, and system design.</p>
+  </div>
+
+  <div class="card">
+    <h3>Computer Engineering</h3>
+    <p>Hardware + software integration and embedded systems.</p>
+  </div>
+
+  <div class="card">
+    <h3>Modern Facilities</h3>
+    <p>Well-equipped labs for hands-on learning experience.</p>
+  </div>
+
+  <div class="card">
+    <h3>Innovation</h3>
+    <p>Building future-ready solutions through technology.</p>
+  </div>
+</section>
+
+<section class="video-section">
+
+  <h2>CCTE Promotional Video</h2>
+
+  <p>
+    Discover what the College of Computing & Technology Engineering has to offer.
+    Watch how we shape future developers, engineers, and innovators.
+  </p>
+
+  <!-- CLEAN VIDEO -->
+  <div class="video-wrapper">
+    <video controls preload="metadata">
+      <source src="AQP9mGuv3A076o5VB1tBKRbH4o_ZCjEMTcXIcI2ZmGcv-wY1fjn0zqK5dJGwMGr32R8piD9UTJIz8tXllYqj4X-kH2XIWBFCjbi-4Yt9wjrXFg.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- BUTTON STAYS HERE -->
+  <a href="index.html" class="btn" style="margin-top:25px; display:inline-block; padding:10px 24px; background:rgba(234,207,181,0.18); color:#fff; border:1px solid rgba(255,122,0,0.5); border-radius:25px; text-decoration:none;">
+    Back to Main Page
+  </a>
+
+</section>
+
+<footer>
+  © 2026 College of Computing & Technology Engineering | Lipa City Colleges
+</footer>
+
+</body>
+</html>

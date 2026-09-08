@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #ffe6eb, #ff9fb3);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 18px;
+      animation: rise 7s linear infinite;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(0.7); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #ff2f55;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+    /* Gallery grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 4px solid #ff6f91;
+      box-shadow: 0 10px 25px rgba(255,0,80,0.3);
+      cursor: pointer;
+      background: #fff0f4;
+      height: 160px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* Start hidden */
+      opacity: 0;
+      transform: scale(0.7);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .gallery-item.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.4s, filter 0.4s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08) rotate(-1deg);
+      filter: brightness(1.1);
+    }
+
+    /* Back button */
+    .back-btn {
+      padding: 12px 28px;
+      border-radius: 30px;
+      border: none;
+      background: linear-gradient(135deg, #ff5c7c, #ff1f4b);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255,0,80,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(255,0,80,0.45);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(255,0,80,0.5);
+      animation: popIn 0.3s ease;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      background: rgba(255,0,80,0.8);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 25px rgba(255,0,80,0.5);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 500px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
+      .gallery-item {
+        height: 120px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<script>
+  const hearts = ["💖","💗","💘","❤️","💞"];
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (6 + Math.random()*4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 10000);
+  }, 500);
+</script>
+
+<h1><b>Photos</b></h1>
+
+<div class="gallery" id="gallery">
+  <div class="gallery-item"><img src="pic1.jpg" alt="Pic 1"></div>
+  <div class="gallery-item"><img src="pic2.jpg" alt="Pic 2"></div>
+  <div class="gallery-item"><img src="pic3.jpg" alt="Pic 3"></div>
+  <div class="gallery-item"><img src="pic4.jpg" alt="Pic 4"></div>
+  <div class="gallery-item"><img src="pic5.jpg" alt="Pic 5"></div>
+  <div class="gallery-item"><img src="pic6.jpg" alt="Pic 6"></div>
+  <div class="gallery-item"><img src="pic7.jpg" alt="Pic 7"></div>
+  <div class="gallery-item"><img src="pic8.jpg" alt="Pic 8"></div>
+  <div class="gallery-item"><img src="pic9.jpg" alt="Pic 9"></div>
+  <div class="gallery-item"><img src="pic10.jpg" alt="Pic 10"></div>
+</div>
+
+<button class="back-btn" onclick="location.href='yes.html'">← Back</button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close" id="closeBtn">×</span>
+  <img id="lightboxImg" src="" alt="Enlarged Pic">
+</div>
+
+<script>
+  // Floating hearts handled above
+
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('closeBtn');
+
+  // Animate all gallery items on page load
+  window.addEventListener('load', () => {
+    galleryItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('show');
+      }, 100 * index); // staggered, 100ms between each
+    });
+  });
+
+  // Lightbox functionality
+  galleryItems.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.querySelector('img').src;
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) lightbox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>

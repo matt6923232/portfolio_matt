@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Music Icon 🎵</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: radial-gradient(circle at top, #ffe6eb, #ff9fb3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 18px;
+    animation: rise 7s linear infinite;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(0.7); opacity: 0; }
+    20% { opacity: 0.6; }
+    100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+  }
+
+  .top-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #ff5a5a;
+    text-shadow: 1px 1px 6px rgba(255,90,90,0.7);
+  }
+
+  .frame {
+    background: #111;
+    border: 4px solid #ff5a5a;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(255,90,90,0.5);
+    width: 90vw;         /* responsive width */
+    max-width: 600px;    /* optional max */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+
+  .frame video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;  /* ensures it fits screen height */
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(255,90,90,0.4);
+    object-fit: contain;
+  }
+
+  .song-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #ff5a5a;
+    text-shadow: 1px 1px 5px rgba(255,90,90,0.6);
+  }
+
+  .back-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, #ff5c7c, #ff1f4b);
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 0, 80, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .back-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 0, 80, 0.6);
+  }
+
+  @media (max-width: 420px) {
+    .top-text { font-size: 1.3rem; }
+    .song-title { font-size: 1rem; }
+    .frame { width: 95vw; }
+  }
+</style>
+</head>
+<body>
+
+<script>
+  const hearts = ["💖","💗","💘","❤️","💞"];
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (6 + Math.random()*4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 10000);
+  }, 500);
+</script>
+
+<div class="top-text">song I dedicated to u baby</div>
+
+<div class="frame">
+  <video src="song.1.mp4" controls></video>
+</div>
+
+<div class="song-title">Always - Daniel Ceasar</div>
+
+<button class="back-btn" onclick="location.href='yes.html'">← Back</button>
+
+</body>
+</html>

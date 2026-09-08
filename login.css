@@ -1,0 +1,671 @@
+/* =========================================================
+   MANECLANG AUTH SYSTEM
+   METALLIC / BLACK / MINIMAL DESIGN
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #252525 0%,
+            #111 35%,
+            #080808 75%
+        );
+
+    color: #fff;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND ABSTRACT SHAPES
+========================================================= */
+
+.shape {
+    position: fixed;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.shape-one {
+
+    width: 550px;
+    height: 550px;
+
+    top: -220px;
+    right: -180px;
+
+    transform: rotate(25deg);
+
+}
+
+
+.shape-two {
+
+    width: 350px;
+    height: 350px;
+
+    bottom: -170px;
+    left: -120px;
+
+    border-color:
+        rgba(255,255,255,0.05);
+
+}
+
+
+.shape-three {
+
+    width: 180px;
+    height: 180px;
+
+    top: 45%;
+    right: 12%;
+
+    border-color:
+        rgba(255,255,255,0.06);
+
+}
+
+
+/* =========================================================
+   AUTH PAGE
+========================================================= */
+
+.auth-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =========================================================
+   AUTH CARD
+========================================================= */
+
+.auth-card {
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,35,35,0.96),
+            rgba(12,12,12,0.98)
+        );
+
+    border:
+        1px solid #333;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.65),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+/* metallic line */
+
+.auth-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #aaa,
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   TOP LABEL
+========================================================= */
+
+.auth-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 25px;
+
+    border-bottom:
+        1px solid #292929;
+
+    color: #777;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   METALLIC LOGO
+========================================================= */
+
+.auth-logo {
+
+    width: 75px;
+    height: 75px;
+
+    margin: 35px auto 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f4f4f4,
+            #888,
+            #202020
+        );
+
+    color: #111;
+
+    font-size: 35px;
+
+    font-weight: 700;
+
+    box-shadow:
+
+        inset -10px -10px 25px
+        rgba(0,0,0,0.45),
+
+        inset 8px 8px 15px
+        rgba(255,255,255,0.35),
+
+        0 20px 50px
+        rgba(0,0,0,0.5);
+
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.auth-heading {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.small-title {
+
+    color: #777;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.auth-heading h1 {
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    letter-spacing: -2px;
+
+    color: #eee;
+
+    text-shadow:
+        2px 2px 0 #050505;
+
+}
+
+
+.auth-heading h1 span {
+
+    color: #777;
+
+}
+
+
+.description {
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 10px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.input-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.input-group input {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 15px;
+
+    background: #111;
+
+    border:
+        1px solid #333;
+
+    color: #eee;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+
+}
+
+
+.input-group input::placeholder {
+
+    color: #555;
+
+}
+
+
+.input-group input:focus {
+
+    border-color: #888;
+
+    background: #151515;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05);
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+
+    min-height: 20px;
+
+    margin-bottom: 8px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #aaa;
+
+}
+
+
+.message.success {
+
+    color: #ccc;
+
+}
+
+
+.message.error {
+
+    color: #ff7777;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.auth-button {
+
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8e8e8,
+            #999
+        );
+
+    color: #111;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+.auth-button span {
+
+    margin-left: 10px;
+
+    font-size: 16px;
+
+}
+
+
+.auth-button:hover {
+
+    transform: translateY(-3px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #aaa
+        );
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.55);
+
+}
+
+
+.auth-button:active {
+
+    transform:
+        translateY(0)
+        scale(0.98);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.auth-footer {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid #292929;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: #666;
+
+}
+
+
+.auth-footer a {
+
+    color: #bbb;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+
+.auth-footer a:hover {
+
+    color: #fff;
+
+}
+
+
+/* =========================================================
+   BACK HOME
+========================================================= */
+
+.back-link {
+
+    display: block;
+
+    margin-top: 25px;
+
+    text-align: center;
+
+    color: #555;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+
+}
+
+
+.back-link:hover {
+
+    color: #aaa;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .auth-page {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .auth-card {
+
+        padding: 28px 22px;
+
+    }
+
+
+    .auth-heading h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .auth-logo {
+
+        width: 65px;
+        height: 65px;
+
+        font-size: 30px;
+
+        margin-top: 28px;
+
+    }
+
+
+    .shape-one {
+
+        width: 350px;
+        height: 350px;
+
+    }
+
+
+    .shape-two {
+
+        width: 250px;
+        height: 250px;
+
+    }
+
+}
+/* =========================================================
+   PASSWORD SHOW / HIDE
+========================================================= */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 70px;
+}
+
+.show-password {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: auto;
+    height: auto;
+
+    padding: 5px;
+
+    border: none;
+    background: transparent;
+
+    color: #666;
+
+    font-size: 8px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+.show-password:hover {
+    color: #aaa;
+    background: transparent;
+    transform: translateY(-50%);
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You, Baby 💕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #ffe6ec, #ff9fb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 18px;
+      animation: rise 8s linear infinite;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(0.8); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    .card {
+      background: linear-gradient(135deg, #fff5f8, #ffe1ea);
+      width: 90%;
+      max-width: 520px;
+      padding: 45px 35px 50px;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 25px 55px rgba(255, 0, 80, 0.25);
+      animation: fadeUp 1s ease;
+      position: relative;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #ff2f68;
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #ff4d7a;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    /* ICON AREA */
+    .icons {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: center;
+      justify-items: center;
+      margin-top: 10px;
+    }
+
+    .gift {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6f91, #ff2f68);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(255,0,80,0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+    }
+
+    .gift::after {
+      content: "❤";
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+      font-size: 14px;
+    }
+
+    .gift:hover {
+      transform: translateY(-8px) scale(1.12);
+      box-shadow: 0 20px 40px rgba(255,0,80,0.5);
+    }
+
+    /* MAIN VIDEO */
+    .gift.main {
+      width: 130px;
+      height: 130px;
+      font-size: 46px;
+      grid-column: 2;
+      grid-row: 1 / 3;
+      background: radial-gradient(circle, #ff9fb3, #ff2f68);
+      animation: heartbeat 1.6s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const hearts = ["💖","💗","💘","❤️"];
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (6 + Math.random()*4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 9000);
+  }, 500);
+</script>
+
+<div class="card">
+  <h1><b>Baby, these are for u!</b> 💕</h1>
+  <div class="subtitle">hope u like it, baby</div>
+  <div class="note">(baby click the icons) </div>
+
+  <div class="icons">
+    <!-- Gallery -->
+    <div class="gift" onclick="location.href='gallery.html'">
+      <i class="fa-solid fa-images"></i>
+    </div>
+
+    <!-- MAIN VIDEO -->
+    <div class="gift main" onclick="location.href='vid.html'">
+      <i class="fa-solid fa-play"></i>
+    </div>
+
+    <!-- Flowers -->
+    <div class="gift" onclick="location.href='flower.html'">
+      <i class="fa-solid fa-seedling"></i>
+    </div>
+
+    <!-- Music -->
+    <div class="gift" onclick="location.href='song.html'">
+      <i class="fa-solid fa-music"></i>
+    </div>
+
+    <!-- Letter -->
+    <div class="gift" onclick="location.href='letter.html'">
+      <i class="fa-solid fa-envelope-open-text"></i>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

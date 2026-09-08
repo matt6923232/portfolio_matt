@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Events</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+/* BODY (SAME AS PROGRAM) */
+body{
+  background:#f5f6f8;
+  color:#222;
+}
+
+/* HEADER (SAME STYLE) */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 60px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e6e6e6;
+  z-index:1000;
+}
+
+header img{height:55px;}
+
+nav a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{color:#ff7a00;}
+
+/* HERO (MATCH PROGRAM STYLE) */
+.hero{
+  margin-top:90px;
+  padding:90px 10%;
+  text-align:center;
+  background:linear-gradient(135deg,#ffffff,#f0f0f0);
+  position:relative;
+  overflow:hidden;
+}
+
+/* ORANGE GLOW (SAME STYLE) */
+.hero::before{
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,#ff7a00 0%,transparent 70%);
+  top:-150px;
+  left:-150px;
+  filter:blur(90px);
+  opacity:0.25;
+}
+
+.hero h1{
+  font-size:3rem;
+}
+
+.hero span{color:#ff7a00;}
+
+.hero p{
+  max-width:850px;
+  margin:15px auto 0;
+  color:#666;
+  line-height:1.8;
+}
+
+/* SECTION TITLE */
+.section-title{
+  text-align:center;
+  margin-top:60px;
+  font-size:2rem;
+  color:#ff7a00;
+}
+
+/* OFFICERS CARD */
+.officer-section{
+  padding:60px 10%;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:30px;
+  border:1px solid #eee;
+  margin-bottom:30px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,rgba(255,122,0,0.15),transparent);
+  top:0;
+  left:0;
+  opacity:0;
+  transition:0.4s;
+}
+
+.card:hover::before{opacity:1;}
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#ff7a00;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:15px;
+}
+
+.gallery img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:25px;
+  background:#1f1f1f;
+  color:#aaa;
+  margin-top:60px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="lcclogo.png">
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="program.html">Programs</a>
+    <a href="event.html">Events</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <img src="deptlogo.png">
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1><span>CCTE</span> Events & Activities</h1>
+  <p>
+    Showcasing the academic, technical, and student development activities of the College of Computing & Technology Engineering
+    at Lipa City Colleges.
+  </p>
+</section>
+
+<!-- OFFICERS -->
+<h2 class="section-title">CODES Officers</h2>
+
+<div class="officer-section">
+  <div class="card">
+    <p>
+      Computing Development and Engineering Society (CODES) official officers
+      leading student initiatives, events, and academic programs in CCTE.
+    </p>
+
+    <img src="codes.png" style="width:100%; margin-top:15px; border-radius:12px;">
+  </div>
+</div>
+
+<!-- EVENTS -->
+<h2 class="section-title">Featured Events</h2>
+
+<div class="officer-section">
+
+  <!-- DEVCORE -->
+  <div class="card">
+    <h3 style="color:#ff7a00;">CCTE DevCore Event</h3>
+
+    <div class="gallery">
+      <img src="dev1.png">
+      <img src="dev25.png">
+      <img src="dev2.png">
+    </div>
+  </div>
+
+  <!-- FILM -->
+  <div class="card">
+    <h3 style="color:#ff7a00;">Film Showing Event</h3>
+  
+
+    <div class="gallery">
+      <img src="film1.jpg">
+      <img src="film2.jpg">
+      <img src="film3.jpg">
+    </div>
+  </div>
+
+  <!-- WORKSHOP -->
+  <div class="card">
+    <h3 style="color:#ff7a00;">International Science Camp 2025</h3>
+
+    <div class="gallery">
+      <img src="taiwan1.jpg">
+      <img src="taiwan2.jpg">
+      <img src="taiwan3.jpg">
+    </div>
+  </div>
+
+  <!-- SPORTFEST -->
+  <div class="card">
+    <h3 style="color:#ff7a00;">CCTE Sportfest</h3>
+
+    <div class="gallery">
+      <img src="sport1.jpg">
+      <img src="sport2.jpg">
+      <img src="sport3.jpg">
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 College of Computing & Technology Engineering | Lipa City Colleges
+</footer>
+
+</body>
+</html>

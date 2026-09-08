@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CCTE - About</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#f5f6f8;
+  color:#222;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 60px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e6e6e6;
+  z-index:1000;
+}
+
+header img{height:55px;}
+
+nav a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#ff7a00;
+}
+
+/* HERO */
+.hero{
+  margin-top:90px;
+  padding:90px 10%;
+  text-align:center;
+  background:linear-gradient(135deg,#ffffff,#f0f0f0);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,#ff7a00 0%,transparent 70%);
+  top:-150px;
+  left:-150px;
+  filter:blur(90px);
+  opacity:0.25;
+}
+
+.hero h1{
+  font-size:3rem;
+}
+
+.hero span{color:#ff7a00;}
+
+.hero p{
+  max-width:850px;
+  margin:15px auto 0;
+  color:#666;
+  line-height:1.8;
+}
+
+/* SECTION TITLE */
+.section-title{
+  text-align:center;
+  margin-top:60px;
+  font-size:2rem;
+  color:#ff7a00;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  padding:60px 10%;
+}
+
+/* CARD */
+.card{
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  border:1px solid #eee;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+  position:relative;
+  overflow:hidden;
+  transition:0.4s;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,rgba(255,122,0,0.15),transparent);
+  top:0;
+  left:0;
+  opacity:0;
+  transition:0.4s;
+}
+
+.card:hover::before{opacity:1;}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:#ff7a00;
+}
+
+.card h3{
+  margin-bottom:10px;
+  color:#333;
+}
+
+.card p{
+  color:#666;
+  line-height:1.7;
+  font-size:0.95rem;
+}
+
+/* IMAGE */
+.about-img{
+  width:100%;
+  max-width:900px;
+  margin:40px auto;
+  display:block;
+  border-radius:15px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:25px;
+  background:#1f1f1f;
+  color:#aaa;
+  margin-top:40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="lcclogo.png">
+  
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="program.html">Programs</a>
+    <a href="event.html">Events</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <img src="deptlogo.png">
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>About <span>CCTE</span></h1>
+  <p>
+    College of Computing and Technology Engineering – Lipa City Colleges
+  </p>
+</section>
+
+<!-- IMAGE -->
+<img src="about.jpg" class="about-img">
+
+<!-- ABOUT -->
+<h2 class="section-title">About CCTE</h2>
+
+<div class="grid">
+
+  <div class="card">
+    <p>
+      The College of Computing and Technology Engineering provides students with strong foundations in computing, engineering technology, innovation, and practical problem-solving.
+    </p>
+  </div>
+
+  <div class="card">
+    <p>
+      The department promotes hands-on learning, research, technical skills, teamwork, and global exposure through academic programs and international activities.
+    </p>
+  </div>
+
+</div>
+
+<!-- MISSION + VISION (FIXED) -->
+<h2 class="section-title">Mission & Vision</h2>
+
+<div class="grid" style="max-width:1000px; margin:0 auto; padding:40px 10%;">
+
+  <div class="card">
+    <h3>Mission</h3>
+    <p>
+      To develop competent, responsible, and innovative students equipped with technical knowledge,
+      professional values, and industry-ready skills.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Vision</h3>
+    <p>
+      To become a recognized center of excellence in computing, technology, engineering, innovation,
+      and global academic collaboration.
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 College of Computing & Technology Engineering | Lipa City Colleges
+</footer>
+
+</body>
+</html>

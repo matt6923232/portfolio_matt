@@ -1,0 +1,5295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portfolio Website | About</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+/* =====================================================
+ACHIEVEMENT SECTION
+===================================================== */
+
+.achievement-section {
+position: relative;
+}
+
+.achievement-heading {
+position: relative;
+}
+
+.achievement-post-button {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+margin-top: 25px;
+padding: 10px 14px;
+border: 1px solid #333;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+transition: .2s ease;
+}
+
+.achievement-post-button:hover {
+color: #fff;
+border-color: #777;
+background: #111;
+}
+
+/* =====================================================
+ACHIEVEMENT FEED
+===================================================== */
+
+.achievement-feed {
+display: flex;
+flex-direction: column;
+gap: 30px;
+width: 100%;
+max-width: 900px;
+margin: 45px auto 0;
+}
+
+/* =====================================================
+ACHIEVEMENT POST
+===================================================== */
+
+.achievement-post {
+width: 100%;
+border: 1px solid #292929;
+background: #0d0d0d;
+overflow: hidden;
+transition: .25s ease;
+}
+
+.achievement-post:hover {
+border-color: #444;
+}
+
+/* =====================================================
+ACHIEVEMENT IMAGE
+===================================================== */
+
+.achievement-post-image {
+position: relative;
+width: 100%;
+height: 420px;
+background: #050505;
+overflow: hidden;
+}
+
+.achievement-post-image img {
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
+}
+
+.achievement-image-empty {
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 10px;
+color: #444;
+text-align: center;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 2px;
+}
+
+.achievement-image-empty i {
+font-size: 32px;
+color: #333;
+}
+
+/* =====================================================
+YEAR
+===================================================== */
+
+.achievement-post-year {
+position: absolute;
+top: 18px;
+left: 18px;
+z-index: 2;
+padding: 8px 11px;
+background: rgba(0, 0, 0, .88);
+border: 1px solid #444;
+color: #aaa;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+/* =====================================================
+ACHIEVEMENT CONTENT
+===================================================== */
+
+.achievement-post-content {
+padding: 26px;
+}
+
+.achievement-post-number {
+display: block;
+margin-bottom: 12px;
+color: #555;
+font-size: 10px;
+letter-spacing: 2px;
+}
+
+.achievement-post-title {
+margin: 0 0 16px;
+color: #fff;
+font-size: clamp(25px, 3.5vw, 42px);
+line-height: .98;
+letter-spacing: -1.8px;
+}
+
+.achievement-post-description {
+max-width: 800px;
+margin: 0;
+color: #888;
+font-size: 13px;
+line-height: 1.85;
+white-space: pre-line;
+}
+
+/* =====================================================
+ACHIEVEMENT FOOTER
+===================================================== */
+
+.achievement-post-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 15px;
+margin-top: 25px;
+padding-top: 18px;
+border-top: 1px solid #222;
+}
+
+.achievement-post-type {
+color: #555;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+.achievement-post-actions {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.achievement-customize-button,
+.achievement-delete-button {
+padding: 9px 12px;
+border: 1px solid #333;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-family: inherit;
+font-size: 8px;
+font-weight: 700;
+letter-spacing: 1px;
+transition: .2s ease;
+}
+
+.achievement-customize-button:hover {
+border-color: #777;
+background: #fff;
+color: #000;
+}
+
+.achievement-delete-button:hover {
+border-color: #777;
+background: #222;
+color: #fff;
+}
+
+/* =====================================================
+EMPTY ACHIEVEMENT
+===================================================== */
+
+.achievement-empty {
+padding: 60px 20px;
+border: 1px dashed #292929;
+text-align: center;
+color: #555;
+font-size: 10px;
+letter-spacing: 2px;
+}
+
+/* =====================================================
+ACHIEVEMENT MODAL
+===================================================== */
+
+.achievement-modal {
+position: fixed;
+inset: 0;
+z-index: 9999;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 25px;
+background: rgba(0, 0, 0, .82);
+backdrop-filter: blur(8px);
+}
+
+.achievement-modal.active {
+display: flex;
+}
+
+.achievement-modal-box {
+width: min(650px, 100%);
+max-height: 90vh;
+overflow-y: auto;
+border: 1px solid #333;
+background: #0c0c0c;
+box-shadow: 0 20px 70px rgba(0, 0, 0, .6);
+}
+
+/* =====================================================
+MODAL HEADER
+===================================================== */
+
+.achievement-modal-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding: 22px 25px;
+border-bottom: 1px solid #222;
+}
+
+.achievement-modal-header h3 {
+margin: 0;
+color: #fff;
+font-size: 14px;
+letter-spacing: 2px;
+}
+
+.achievement-modal-close {
+border: 0;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-size: 22px;
+line-height: 1;
+transition: .2s ease;
+}
+
+.achievement-modal-close:hover {
+color: #fff;
+}
+
+/* =====================================================
+FORM
+===================================================== */
+
+.achievement-form {
+padding: 25px;
+}
+
+.achievement-form label {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 20px;
+color: #666;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+.achievement-form input,
+.achievement-form textarea {
+width: 100%;
+box-sizing: border-box;
+border: 1px solid #292929;
+outline: none;
+background: #090909;
+color: #fff;
+padding: 13px;
+font-family: inherit;
+font-size: 12px;
+transition: .2s ease;
+}
+
+.achievement-form textarea {
+min-height: 140px;
+resize: vertical;
+}
+
+.achievement-form input:focus,
+.achievement-form textarea:focus {
+border-color: #666;
+background: #111;
+}
+
+/* =====================================================
+ACHIEVEMENT IMAGE UPLOAD
+===================================================== */
+
+.achievement-image-upload {
+margin-bottom: 20px;
+}
+
+.achievement-image-upload-label {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 180px;
+padding: 20px;
+border: 1px dashed #444;
+background: #080808;
+color: #777;
+text-align: center;
+cursor: pointer;
+transition: .2s ease;
+overflow: hidden;
+}
+
+.achievement-image-upload-label:hover {
+border-color: #777;
+background: #111;
+color: #fff;
+}
+
+.achievement-image-upload-label.has-image {
+padding: 0;
+}
+
+.achievement-image-upload-label img {
+width: 100%;
+max-height: 350px;
+display: block;
+object-fit: cover;
+}
+
+.achievement-upload-text {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+}
+
+.achievement-upload-icon {
+font-size: 30px;
+color: #aaa;
+}
+
+.achievement-upload-text small {
+color: #555;
+font-size: 8px;
+letter-spacing: 1px;
+}
+
+/* =====================================================
+FORM ACTIONS
+===================================================== */
+
+.achievement-form-actions {
+display: flex;
+gap: 10px;
+margin-top: 25px;
+}
+
+.achievement-submit-button {
+flex: 1;
+border: 1px solid #fff;
+background: #fff;
+color: #000;
+padding: 13px;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1px;
+transition: .2s ease;
+}
+
+.achievement-submit-button:hover {
+background: #aaa;
+border-color: #aaa;
+}
+
+.achievement-cancel-button {
+border: 1px solid #333;
+background: transparent;
+color: #777;
+padding: 13px 18px;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1px;
+transition: .2s ease;
+}
+
+.achievement-cancel-button:hover {
+background: #fff;
+border-color: #fff;
+color: #000;
+}
+
+/* =====================================================
+PROFILE
+===================================================== */
+
+.profile-customize {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-top: 18px;
+}
+
+.profile-change-button,
+.profile-delete-button {
+width: 100%;
+border: 1px solid #333;
+background: transparent;
+color: #777;
+padding: 9px 12px;
+cursor: pointer;
+font-family: inherit;
+font-size: 8px;
+font-weight: 700;
+letter-spacing: 1.5px;
+transition: .2s ease;
+}
+
+.profile-change-button:hover {
+color: #fff;
+border-color: #777;
+background: #111;
+}
+
+.profile-delete-button:hover {
+color: #fff;
+border-color: #777;
+background: #222;
+}
+
+/* =====================================================
+PROFILE EMPTY STATE
+===================================================== */
+
+.profile-frame {
+position: relative;
+min-height: 420px;
+background: #050505;
+overflow: hidden;
+}
+
+.profile-frame-empty {
+width: 100%;
+height: 100%;
+min-height: 420px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 12px;
+color: #444;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 2px;
+}
+
+.profile-frame-empty i {
+font-size: 40px;
+color: #292929;
+}
+
+/* =====================================================
+UPLOAD STATUS
+===================================================== */
+
+.upload-status {
+display: none;
+margin-top: 12px;
+padding: 10px 12px;
+border: 1px solid #292929;
+background: #090909;
+color: #777;
+font-size: 8px;
+line-height: 1.6;
+letter-spacing: 1px;
+}
+
+.upload-status.show {
+display: block;
+}
+
+.upload-status.success {
+color: #aaa;
+border-color: #444;
+}
+
+.upload-status.error {
+color: #aaa;
+border-color: #555;
+}
+
+/* =====================================================
+PHOTO JOURNAL
+===================================================== */
+
+.photo-journal {
+margin-top: 120px;
+padding-top: 80px;
+border-top: 1px solid #222;
+}
+
+.photo-journal h2 {
+font-size: clamp(50px, 7vw, 90px);
+line-height: .9;
+letter-spacing: -5px;
+margin: 20px 0 25px;
+}
+
+.photo-journal h2 span {
+color: #666;
+}
+
+.photo-journal-intro {
+max-width: 650px;
+color: #777;
+font-size: 14px;
+line-height: 1.8;
+margin-bottom: 40px;
+}
+
+/* =====================================================
+GALLERY UPLOAD BUTTON
+===================================================== */
+
+.gallery-upload-button {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+margin-top: 25px;
+padding: 10px 14px;
+border: 1px solid #333;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+transition: .2s ease;
+}
+
+.gallery-upload-button:hover {
+color: #fff;
+border-color: #777;
+background: #111;
+}
+
+/* =====================================================
+GALLERY MODAL
+===================================================== */
+
+.gallery-modal {
+position: fixed;
+inset: 0;
+z-index: 9998;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 25px;
+background: rgba(0, 0, 0, .82);
+backdrop-filter: blur(8px);
+}
+
+.gallery-modal.active {
+display: flex;
+}
+
+.gallery-modal-box {
+width: min(650px, 100%);
+max-height: 90vh;
+overflow-y: auto;
+border: 1px solid #333;
+background: #0c0c0c;
+box-shadow: 0 20px 70px rgba(0, 0, 0, .6);
+}
+
+.gallery-modal-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding: 22px 25px;
+border-bottom: 1px solid #222;
+}
+
+.gallery-modal-header h3 {
+margin: 0;
+color: #fff;
+font-size: 14px;
+letter-spacing: 2px;
+}
+
+.gallery-modal-close {
+border: 0;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-size: 22px;
+}
+
+.gallery-modal-close:hover {
+color: #fff;
+}
+
+.gallery-form {
+padding: 25px;
+}
+
+.gallery-form label {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 20px;
+color: #666;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+.gallery-form input {
+width: 100%;
+box-sizing: border-box;
+border: 1px solid #292929;
+outline: none;
+background: #090909;
+color: #fff;
+padding: 13px;
+font-family: inherit;
+font-size: 12px;
+}
+
+.gallery-form input:focus {
+border-color: #666;
+background: #111;
+}
+
+/* =====================================================
+GALLERY IMAGE UPLOAD
+===================================================== */
+
+.gallery-image-upload {
+margin-bottom: 20px;
+}
+
+.gallery-image-upload-label {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 200px;
+padding: 20px;
+border: 1px dashed #444;
+background: #080808;
+color: #777;
+text-align: center;
+cursor: pointer;
+overflow: hidden;
+transition: .2s ease;
+}
+
+.gallery-image-upload-label:hover {
+border-color: #777;
+background: #111;
+color: #fff;
+}
+
+.gallery-image-upload-label.has-image {
+padding: 0;
+}
+
+.gallery-image-upload-label img {
+width: 100%;
+max-height: 400px;
+display: block;
+object-fit: contain;
+}
+
+.gallery-upload-text {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+}
+
+.gallery-upload-text i {
+font-size: 30px;
+color: #aaa;
+}
+
+.gallery-upload-text small {
+color: #555;
+font-size: 8px;
+letter-spacing: 1px;
+}
+
+.gallery-form-actions {
+display: flex;
+gap: 10px;
+}
+
+.gallery-submit-button {
+flex: 1;
+border: 1px solid #fff;
+background: #fff;
+color: #000;
+padding: 13px;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+.gallery-submit-button:hover {
+background: #aaa;
+border-color: #aaa;
+}
+
+.gallery-cancel-button {
+border: 1px solid #333;
+background: transparent;
+color: #777;
+padding: 13px 18px;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+.gallery-cancel-button:hover {
+background: #fff;
+border-color: #fff;
+color: #000;
+}
+
+/* =====================================================
+PHOTO GRID
+===================================================== */
+
+.photo-grid {
+width: 100%;
+max-width: 900px;
+margin: 45px auto 0;
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 20px;
+}
+
+/* =====================================================
+PHOTO CARD
+===================================================== */
+
+.gallery-card {
+border: 1px solid #292929;
+background: #0d0d0d;
+overflow: hidden;
+transition: .25s ease;
+}
+
+.gallery-card:hover {
+border-color: #444;
+transform: translateY(-3px);
+}
+
+.gallery-card-image {
+width: 100%;
+height: 300px;
+object-fit: cover;
+display: block;
+background: #050505;
+}
+
+.gallery-card-content {
+padding: 18px;
+}
+
+.gallery-card-number {
+display: block;
+margin-bottom: 10px;
+color: #555;
+font-size: 10px;
+letter-spacing: 2px;
+}
+
+.gallery-card-caption {
+margin: 0;
+color: #aaa;
+font-size: 13px;
+line-height: 1.7;
+}
+
+.gallery-delete-button {
+margin-top: 17px;
+padding: 8px 12px;
+border: 1px solid #333;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-family: inherit;
+font-size: 8px;
+font-weight: 700;
+letter-spacing: 1px;
+transition: .2s ease;
+}
+
+.gallery-delete-button:hover {
+background: #222;
+border-color: #777;
+color: #fff;
+}
+
+/* =====================================================
+EMPTY GALLERY
+===================================================== */
+
+.gallery-empty-message {
+grid-column: 1 / -1;
+padding: 60px 20px;
+border: 1px dashed #292929;
+text-align: center;
+color: #555;
+font-size: 10px;
+letter-spacing: 2px;
+}
+
+/* =====================================================
+SKILLS
+===================================================== */
+
+.skills-section-divider {
+margin-top: 120px;
+padding-top: 80px;
+border-top: 1px solid #222;
+}
+
+.skills-heading-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+}
+
+.skills-heading-row .welcome {
+margin-bottom: 0;
+}
+
+.skills-upload-button {
+display: inline-flex;
+align-items: center;
+gap: 9px;
+padding: 10px 14px;
+border: 1px solid #333;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+transition: .2s ease;
+white-space: nowrap;
+}
+
+.skills-upload-button:hover {
+color: #fff;
+border-color: #777;
+background: #111;
+}
+
+.skills-upload-button i {
+font-size: 11px;
+}
+
+.skills-list {
+position: relative;
+}
+
+.skill {
+position: relative;
+display: flex;
+align-items: center;
+gap: 25px;
+min-height: 105px;
+padding: 25px 80px 25px 0;
+border-bottom: 1px solid #222;
+box-sizing: border-box;
+}
+
+.skill:first-child {
+border-top: 1px solid #222;
+}
+
+.skill > span:first-child {
+flex: 0 0 30px;
+color: #555;
+font-size: 10px;
+letter-spacing: 2px;
+}
+
+.skill-content {
+flex: 1;
+min-width: 0;
+}
+
+.skill-content h2 {
+margin: 0 0 8px;
+color: #fff;
+font-size: clamp(24px, 3vw, 38px);
+line-height: 1;
+letter-spacing: -1.5px;
+}
+
+.skill-content p {
+margin: 0;
+color: #777;
+font-size: 13px;
+line-height: 1.7;
+}
+
+.skill-actions {
+position: absolute;
+top: 50%;
+right: 0;
+display: flex;
+align-items: center;
+gap: 7px;
+transform: translateY(-50%);
+}
+
+.skill-action-button {
+width: 32px;
+height: 32px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+border: 1px solid #333;
+background: transparent;
+color: #666;
+cursor: pointer;
+font-size: 11px;
+transition: .2s ease;
+}
+
+.skill-action-button:hover {
+border-color: #777;
+background: #111;
+color: #fff;
+}
+
+.skill-delete-button:hover {
+background: #222;
+}
+
+.skill-modal {
+position: fixed;
+inset: 0;
+z-index: 9999;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 25px;
+background: rgba(0, 0, 0, .82);
+backdrop-filter: blur(8px);
+}
+
+.skill-modal.active {
+display: flex;
+}
+
+.skill-modal-box {
+width: min(560px, 100%);
+max-height: 90vh;
+overflow-y: auto;
+border: 1px solid #333;
+background: #0c0c0c;
+box-shadow: 0 20px 70px rgba(0, 0, 0, .6);
+}
+
+.skill-modal-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+padding: 22px 25px;
+border-bottom: 1px solid #222;
+}
+
+.skill-modal-header h3 {
+margin: 0;
+color: #fff;
+font-size: 14px;
+letter-spacing: 2px;
+}
+
+.skill-modal-close {
+border: 0;
+background: transparent;
+color: #777;
+cursor: pointer;
+font-size: 22px;
+line-height: 1;
+}
+
+.skill-modal-close:hover {
+color: #fff;
+}
+
+.skill-form {
+padding: 25px;
+}
+
+.skill-form label {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin-bottom: 20px;
+color: #666;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+.skill-form input,
+.skill-form textarea {
+width: 100%;
+box-sizing: border-box;
+border: 1px solid #292929;
+outline: none;
+background: #090909;
+color: #fff;
+padding: 13px;
+font-family: inherit;
+font-size: 12px;
+transition: .2s ease;
+}
+
+.skill-form textarea {
+min-height: 120px;
+resize: vertical;
+}
+
+.skill-form input:focus,
+.skill-form textarea:focus {
+border-color: #666;
+background: #111;
+}
+
+.skill-form-actions {
+display: flex;
+gap: 10px;
+margin-top: 25px;
+}
+
+.skill-submit-button {
+flex: 1;
+border: 1px solid #fff;
+background: #fff;
+color: #000;
+padding: 13px;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+.skill-submit-button:hover {
+background: #aaa;
+border-color: #aaa;
+}
+
+.skill-cancel-button {
+border: 1px solid #333;
+background: transparent;
+color: #777;
+padding: 13px 18px;
+cursor: pointer;
+font-family: inherit;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+.skill-cancel-button:hover {
+background: #fff;
+border-color: #fff;
+color: #000;
+}
+
+/* =====================================================
+DELETE CONFIRM MODAL
+===================================================== */
+
+.delete-confirm-modal {
+position: fixed;
+inset: 0;
+z-index: 10000;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 20px;
+background: rgba(0, 0, 0, .82);
+backdrop-filter: blur(8px);
+}
+
+.delete-confirm-modal.active {
+display: flex;
+}
+
+.delete-confirm-box {
+width: min(420px, 100%);
+padding: 28px;
+border: 1px solid #333;
+background: #0c0c0c;
+box-shadow: 0 20px 70px rgba(0, 0, 0, .65);
+}
+
+.delete-confirm-label {
+display: block;
+margin-bottom: 12px;
+color: #555;
+font-size: 8px;
+font-weight: 700;
+letter-spacing: 2px;
+}
+
+.delete-confirm-box h3 {
+margin: 0 0 12px;
+color: #fff;
+font-size: 20px;
+letter-spacing: -0.5px;
+}
+
+.delete-confirm-box p {
+margin: 0;
+color: #777;
+font-size: 12px;
+line-height: 1.7;
+}
+
+.delete-confirm-actions {
+display: flex;
+gap: 10px;
+margin-top: 25px;
+}
+
+.delete-confirm-cancel,
+.delete-confirm-delete {
+flex: 1;
+padding: 12px;
+cursor: pointer;
+font-family: inherit;
+font-size: 8px;
+font-weight: 700;
+letter-spacing: 1.2px;
+transition: .2s ease;
+}
+
+.delete-confirm-cancel {
+border: 1px solid #333;
+background: transparent;
+color: #777;
+}
+
+.delete-confirm-cancel:hover {
+border-color: #777;
+background: #fff;
+color: #000;
+}
+
+.delete-confirm-delete {
+border: 1px solid #fff;
+background: #fff;
+color: #000;
+}
+
+.delete-confirm-delete:hover {
+border-color: #aaa;
+background: #aaa;
+}
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+.achievement-feed {
+    margin-top: 35px;
+}
+
+.achievement-post-image {
+    height: 300px;
+}
+
+.achievement-post-content {
+    padding: 20px;
+}
+
+.achievement-post-title {
+    font-size: 28px;
+}
+
+.achievement-post-footer {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.achievement-post-actions {
+    width: 100%;
+}
+
+.achievement-customize-button,
+.achievement-delete-button {
+    flex: 1;
+}
+
+.achievement-modal,
+.gallery-modal,
+.skill-modal {
+    padding: 15px;
+}
+
+.achievement-form,
+.gallery-form,
+.skill-form {
+    padding: 20px;
+}
+
+.achievement-form-actions,
+.gallery-form-actions,
+.skill-form-actions {
+    flex-direction: column;
+}
+
+.achievement-cancel-button,
+.gallery-cancel-button,
+.skill-cancel-button {
+    width: 100%;
+}
+
+.photo-journal {
+    margin-top: 80px;
+    padding-top: 60px;
+}
+
+.photo-journal h2 {
+    letter-spacing: -3px;
+}
+
+.photo-grid {
+    grid-template-columns: 1fr;
+}
+
+.gallery-card-image {
+    height: 280px;
+}
+
+.delete-confirm-actions {
+    flex-direction: column;
+}
+
+.profile-frame {
+    min-height: 300px;
+}
+
+.profile-frame-empty {
+    min-height: 300px;
+}
+
+.skills-section-divider {
+    margin-top: 80px;
+    padding-top: 60px;
+}
+
+.skills-heading-row {
+    align-items: flex-start;
+}
+
+.skill {
+    gap: 15px;
+    padding-right: 75px;
+}
+
+.skill-content h2 {
+    font-size: 25px;
+}
+
+.skill-content p {
+    font-size: 12px;
+}
+
+.skill-actions {
+    gap: 5px;
+}
+
+.skill-action-button {
+    width: 29px;
+    height: 29px;
+}
+
+}
+.skill {
+    position: relative;
+    min-height: 120px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.skill-content {
+    min-width: 0;
+    padding-right: 90px;
+}
+
+.skill-content h2,
+.skill-content p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.skill-content p {
+    white-space: normal;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+<div class="navbar-left">
+
+    <div
+        id="profile-placeholder"
+        aria-hidden="true">
+    </div>
+
+    <div class="logo">
+        PORTFOLIO
+    </div>
+
+</div>
+
+<input
+    type="checkbox"
+    id="menu-toggle"
+
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="menu-icon">
+            ☰
+        </label>
+<div class="nav-links">
+
+    <a href="index.html">
+        <i class="bi bi-house"></i>
+        <span>HOME</span>
+    </a>
+
+    <a
+        href="about.html"
+        class="active">
+
+        <i class="bi bi-person"></i>
+
+        <span>
+            ABOUT
+        </span>
+
+    </a>
+
+    <a href="projects.html">
+
+        <i class="bi bi-grid"></i>
+
+        <span>
+            PROJECTS
+        </span>
+
+    </a>
+
+    <a href="contact.html">
+
+        <i class="bi bi-envelope"></i>
+
+        <span>
+            CONTACT
+        </span>
+
+    </a>
+
+</div>
+
+</nav>
+
+
+<!-- =====================================================
+ABOUT
+===================================================== -->
+
+<main class="about">
+
+<section class="about-intro">
+
+<div class="about-intro-text">
+
+    <div class="page-index">
+
+        <span id="aboutPageNumber">02</span>
+
+        <span id="aboutPageLabel">ABOUT / PROFILE</span>
+
+    </div>
+
+    <p class="welcome" id="aboutWelcome">
+        WHO I AM
+    </p>
+
+    <h1 id="aboutHeadline">
+
+        ABOUT<br>
+
+        <span>
+            ME.
+        </span>
+
+    </h1>
+
+    <h3 id="aboutSubtitle">
+        COMPUTER ENGINEERING • TECHNOLOGY • CREATIVE PROJECTS
+    </h3>
+
+    <div class="about-content">
+
+        <p id="aboutParagraph1">
+            I am Matthaevs Satzchell L. Maneclang, a
+            Computer Engineering student with a strong
+            interest in technology, programming, and
+            digital creation.
+        </p>
+
+        <p id="aboutParagraph2">
+            I enjoy learning through building. Whether
+            developing websites, interactive applications,
+            games, or exploring engineering concepts, I
+            see every project as an opportunity to learn,
+            experiment, and improve.
+        </p>
+
+        <p id="aboutParagraph3">
+            This website is a growing collection of my
+            work, ideas, achievements, and projects as I
+            continue developing my skills and exploring
+            what I can create with technology.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+PROFILE
+================================================= -->
+
+<div class="about-profile">
+
+    <div class="profile-frame" id="profileFrame">
+
+        <span class="profile-corner top-left"></span>
+        <span class="profile-corner top-right"></span>
+        <span class="profile-corner bottom-left"></span>
+        <span class="profile-corner bottom-right"></span>
+
+        <div
+            id="profileEmptyState"
+            class="profile-frame-empty">
+
+            <i class="bi bi-person"></i>
+
+            <span>
+                NO PROFILE PHOTO
+            </span>
+
+        </div>
+
+        <img
+            id="profileImage"
+            alt="Profile photo"
+            hidden>
+
+    </div>
+
+    <div class="profile-caption">
+
+        <span id="aboutProfileNumber">01</span>
+
+        <span id="aboutProfileLabel">PERSONAL PROFILE</span>
+
+    </div>
+
+    <div class="profile-customize">
+
+        <input
+            type="file"
+            id="profileImageInput"
+            accept="image/*"
+            hidden
+        >
+
+        <button
+            type="button"
+            id="changeProfileButton"
+            class="profile-change-button">
+
+            UPLOAD PROFILE PHOTO →
+
+        </button>
+
+        <button
+            type="button"
+            id="deleteProfileButton"
+            class="profile-delete-button">
+
+            DELETE PROFILE PHOTO
+
+        </button>
+
+        <div
+            id="profileUploadStatus"
+            class="upload-status">
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ACHIEVEMENTS
+===================================================== -->
+
+<section class="achievement-section">
+
+<div class="achievement-heading">
+
+    <div class="section-label">
+
+        <span>03</span>
+
+        <span>RECOGNITION</span>
+
+    </div>
+
+    <p class="welcome">
+        RECOGNITION
+    </p>
+
+    <h2>
+        ACHIEVEMENTS<span>.</span>
+    </h2>
+
+    <p class="achievement-intro">
+        Recognition received for application and game
+        development during my senior high school years.
+    </p>
+
+    <button
+        type="button"
+        id="postAchievementButton"
+        class="achievement-post-button">
+
+        + POST ACHIEVEMENT
+
+    </button>
+
+</div>
+
+<div
+    class="achievement-feed"
+    id="achievementFeed">
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PHOTO JOURNAL
+===================================================== -->
+
+<section class="photo-journal">
+
+<div class="section-label">
+
+    <span>06</span>
+
+    <span>PHOTO JOURNAL</span>
+
+</div>
+
+<p class="welcome">
+    MY MOMENTS
+</p>
+
+<h2>
+
+    MY<br>
+
+    <span>
+        GALLERY.
+    </span>
+
+</h2>
+
+<p class="photo-journal-intro">
+
+    Upload photos and add your own captions.
+    Your memories will stay saved in this browser.
+
+</p>
+
+<button
+    type="button"
+    id="uploadGalleryButton"
+    class="gallery-upload-button">
+
+    + UPLOAD GALLERY
+
+</button>
+
+<div
+    class="photo-grid"
+    id="photoGrid">
+</div>
+
+</section>
+
+
+<!-- =====================================================
+SKILLS
+===================================================== -->
+
+<section class="about-section skills-section-divider">
+
+<div class="section-label">
+
+    <span>07</span>
+
+    <span>SKILLS</span>
+
+</div>
+
+<div class="skills-heading-row">
+
+    <p class="welcome">
+        WHAT I WORK WITH
+    </p>
+
+    <button
+        type="button"
+        id="skillsUploadButton"
+        class="skills-upload-button">
+
+        <i class="bi bi-plus-lg"></i>
+        UPLOAD
+
+    </button>
+
+</div>
+
+<div
+    class="skills-list"
+    id="skillsList">
+</div>
+
+</section>
+
+
+<!-- =====================================================
+CURRENT FOCUS
+===================================================== -->
+
+<section class="about-focus">
+
+<div class="focus-decoration">
+    //
+</div>
+
+<div class="section-label">
+
+    <span>08</span>
+
+    <span>CURRENT FOCUS</span>
+
+</div>
+
+<p class="welcome">
+    CURRENT FOCUS
+</p>
+
+<h2>
+
+    LEARNING.<br>
+
+    BUILDING.<br>
+
+    <span>
+        IMPROVING.
+    </span>
+
+</h2>
+
+<p>
+    I am continuously developing my programming,
+    web development, and problem-solving skills while
+    creating projects that challenge me to learn
+    something new.
+</p>
+
+</section>
+
+
+<div class="about-cta">
+
+<p class="welcome">
+    CONTINUE EXPLORING
+</p>
+
+<a
+    class="button"
+    href="projects.html">
+
+    EXPLORE MY PROJECTS
+
+    <span>
+        →
+    </span>
+
+</a>
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+ACHIEVEMENT MODAL
+===================================================== -->
+
+<div
+    class="achievement-modal"
+    id="achievementModal"
+    aria-hidden="true">
+
+<div class="achievement-modal-box">
+
+    <div class="achievement-modal-header">
+
+        <h3 id="achievementModalTitle">
+            POST ACHIEVEMENT
+        </h3>
+
+        <button
+            type="button"
+            id="achievementModalClose"
+            class="achievement-modal-close"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <form
+        id="achievementForm"
+        class="achievement-form">
+
+        <label>
+
+            ACADEMIC YEAR
+
+            <input
+                type="text"
+                id="achievementYearInput"
+                maxlength="80"
+                placeholder="e.g. A.Y. 2025–2026"
+                required
+            >
+
+        </label>
+
+        <label>
+
+            ACHIEVEMENT TITLE
+
+            <input
+                type="text"
+                id="achievementTitleInput"
+                maxlength="150"
+                placeholder="e.g. BEST IN APPLICATION SYSTEM"
+                required
+            >
+
+        </label>
+
+        <label>
+
+            DESCRIPTION / DETAILS
+
+            <textarea
+                id="achievementDescriptionInput"
+                maxlength="1000"
+                placeholder="Write the achievement details, evaluation panel, etc."
+                required
+            ></textarea>
+
+        </label>
+
+        <div class="achievement-image-upload">
+
+            <input
+                type="file"
+                id="achievementImageInput"
+                accept="image/*"
+                hidden
+            >
+
+            <label
+                for="achievementImageInput"
+                id="achievementImageUploadLabel"
+                class="achievement-image-upload-label">
+
+                <span
+                    id="achievementUploadText"
+                    class="achievement-upload-text">
+
+                    <span class="achievement-upload-icon">
+                        +
+                    </span>
+
+                    <span>
+                        UPLOAD ACHIEVEMENT PHOTO
+                    </span>
+
+                    <small>
+                        IMAGE REQUIRED • JPG, PNG, WEBP
+                    </small>
+
+                </span>
+
+                <img
+                    id="achievementImagePreview"
+                    alt="Achievement preview"
+                    hidden>
+
+            </label>
+
+            <div
+                id="achievementUploadStatus"
+                class="upload-status">
+            </div>
+
+        </div>
+
+        <div class="achievement-form-actions">
+
+            <button
+                type="submit"
+                id="achievementSubmitButton"
+                class="achievement-submit-button">
+
+                POST ACHIEVEMENT →
+
+            </button>
+
+            <button
+                type="button"
+                id="achievementCancelButton"
+                class="achievement-cancel-button">
+
+                CANCEL
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+GALLERY UPLOAD MODAL
+===================================================== -->
+
+<div
+    class="gallery-modal"
+    id="galleryModal"
+    aria-hidden="true">
+
+<div class="gallery-modal-box">
+
+    <div class="gallery-modal-header">
+
+        <h3>
+            UPLOAD GALLERY
+        </h3>
+
+        <button
+            type="button"
+            id="galleryModalClose"
+            class="gallery-modal-close"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <form
+        id="galleryForm"
+        class="gallery-form">
+
+        <div class="gallery-image-upload">
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                hidden
+            >
+
+            <label
+                for="photoInput"
+                id="galleryImageUploadLabel"
+                class="gallery-image-upload-label">
+
+                <span
+                    id="galleryUploadText"
+                    class="gallery-upload-text">
+
+                    <i class="bi bi-image"></i>
+
+                    <span>
+                        UPLOAD IMAGE
+                    </span>
+
+                    <small>
+                        JPG, PNG, WEBP
+                    </small>
+
+                </span>
+
+                <img
+                    id="photoPreview"
+                    alt="Selected gallery photo"
+                    hidden>
+
+            </label>
+
+            <div
+                id="galleryUploadStatus"
+                class="upload-status">
+            </div>
+
+        </div>
+
+        <label>
+
+            BIO / CAPTION
+
+            <input
+                type="text"
+                id="photoCaption"
+                maxlength="150"
+                placeholder="Write something about this moment..."
+                required
+            >
+
+        </label>
+
+        <div class="gallery-form-actions">
+
+            <button
+                type="submit"
+                id="addPhotoButton"
+                class="gallery-submit-button">
+
+                UPLOAD GALLERY →
+
+            </button>
+
+            <button
+                type="button"
+                id="galleryCancelButton"
+                class="gallery-cancel-button">
+
+                CANCEL
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+SKILL MODAL
+===================================================== -->
+
+<div
+    class="skill-modal"
+    id="skillModal"
+    aria-hidden="true">
+
+<div class="skill-modal-box">
+
+    <div class="skill-modal-header">
+
+        <h3 id="skillModalTitle">
+            ADD SKILL
+        </h3>
+
+        <button
+            type="button"
+            id="skillModalClose"
+            class="skill-modal-close"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <form
+        id="skillForm"
+        class="skill-form">
+
+        <label>
+
+            SKILL / TECHNOLOGY
+
+            <input
+                type="text"
+                id="skillTitleInput"
+                maxlength="80"
+                placeholder="e.g. PYTHON"
+                required
+            >
+
+        </label>
+
+        <label>
+
+            DESCRIPTION
+
+            <textarea
+                id="skillDescriptionInput"
+                maxlength="300"
+                placeholder="Write something about this skill..."
+                required
+            ></textarea>
+
+        </label>
+
+        <div class="skill-form-actions">
+
+            <button
+                type="submit"
+                class="skill-submit-button"
+                id="skillSubmitButton">
+
+                ADD SKILL →
+
+            </button>
+
+            <button
+                type="button"
+                class="skill-cancel-button"
+                id="skillCancelButton">
+
+                CANCEL
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+DELETE CONFIRMATION MODAL
+===================================================== -->
+
+<div
+    class="delete-confirm-modal"
+    id="deleteConfirmModal"
+    aria-hidden="true">
+
+<div class="delete-confirm-box">
+
+    <span class="delete-confirm-label">
+        CONFIRM ACTION
+    </span>
+
+    <h3 id="deleteConfirmTitle">
+        DELETE THIS POST?
+    </h3>
+
+    <p id="deleteConfirmMessage">
+        Are you sure you want to delete this post?
+        This action cannot be undone.
+    </p>
+
+    <div class="delete-confirm-actions">
+
+        <button
+            type="button"
+            id="deleteConfirmCancel"
+            class="delete-confirm-cancel">
+
+            CANCEL
+
+        </button>
+
+        <button
+            type="button"
+            id="deleteConfirmDelete"
+            class="delete-confirm-delete">
+
+            YES, DELETE
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="footer-brand">
+    MANECLANG
+</div>
+
+<div class="footer-line"></div>
+
+<div class="footer-bottom">
+
+    <span>
+        © 2026 PORTFOLIO
+    </span>
+
+    <span>
+        ABOUT / PROFILE
+    </span>
+
+</div>
+
+</footer>
+
+
+<!-- =====================================================
+MAIN JAVASCRIPT
+===================================================== -->
+
+<script>
+
+(function () {
+
+"use strict";
+
+
+/* =================================================
+   STORAGE KEYS
+================================================= */
+
+const CURRENT_PORTFOLIO_USER =
+    String(localStorage.getItem("maneclangCurrentUser") || "guest")
+        .toLowerCase();
+
+const PROFILE_IMAGE_KEY =
+    "maneclangProfileImage_" + CURRENT_PORTFOLIO_USER;
+
+const ACHIEVEMENT_KEY =
+    "maneclangAchievements_" + CURRENT_PORTFOLIO_USER;
+
+const GALLERY_KEY =
+    "maneclangGallery_" + CURRENT_PORTFOLIO_USER;
+
+const SKILLS_KEY =
+    "maneclangSkills_" + CURRENT_PORTFOLIO_USER;
+
+
+/* =================================================
+   GENERIC STATUS
+================================================= */
+
+function showStatus(
+    element,
+    message,
+    type = "success"
+) {
+
+    if (!element) {
+        return;
+    }
+
+    element.textContent =
+        message;
+
+    element.className =
+        "upload-status show " +
+        type;
+
+}
+
+
+function clearStatus(element) {
+
+    if (!element) {
+        return;
+    }
+
+    element.textContent = "";
+
+    element.className =
+        "upload-status";
+
+}
+
+
+/* =================================================
+   IMAGE RESIZER
+================================================= */
+
+function resizeImage(
+    file,
+    maxWidth = 1400,
+    maxHeight = 1200,
+    quality = 0.78
+) {
+
+    return new Promise(
+        function (resolve, reject) {
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function (event) {
+
+                    const image =
+                        new Image();
+
+                    image.onload =
+                        function () {
+
+                            let width =
+                                image.width;
+
+                            let height =
+                                image.height;
+
+                            const ratio =
+                                Math.min(
+                                    maxWidth / width,
+                                    maxHeight / height,
+                                    1
+                                );
+
+                            width =
+                                Math.max(
+                                    1,
+                                    Math.round(
+                                        width * ratio
+                                    )
+                                );
+
+                            height =
+                                Math.max(
+                                    1,
+                                    Math.round(
+                                        height * ratio
+                                    )
+                                );
+
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
+                                );
+
+                            canvas.width =
+                                width;
+
+                            canvas.height =
+                                height;
+
+                            const context =
+                                canvas.getContext(
+                                    "2d"
+                                );
+
+                            context.fillStyle =
+                                "#050505";
+
+                            context.fillRect(
+                                0,
+                                0,
+                                width,
+                                height
+                            );
+
+                            context.drawImage(
+                                image,
+                                0,
+                                0,
+                                width,
+                                height
+                            );
+
+                            resolve(
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    quality
+                                )
+                            );
+
+                        };
+
+                    image.onerror =
+                        function () {
+
+                            reject(
+                                new Error(
+                                    "Unable to load image."
+                                )
+                            );
+
+                        };
+
+                    image.src =
+                        event.target.result;
+
+                };
+
+            reader.onerror =
+                function () {
+
+                    reject(
+                        new Error(
+                            "Unable to read image."
+                        )
+                    );
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   SAFE STORAGE
+================================================= */
+
+function safeSetItem(
+    key,
+    value
+) {
+
+    try {
+
+        localStorage.setItem(
+            key,
+            value
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.error(error);
+
+        return false;
+
+    }
+
+}
+
+
+/* =================================================
+   PROFILE
+================================================= */
+
+const profileImage =
+    document.getElementById(
+        "profileImage"
+    );
+
+const profileEmptyState =
+    document.getElementById(
+        "profileEmptyState"
+    );
+
+const profileImageInput =
+    document.getElementById(
+        "profileImageInput"
+    );
+
+const changeProfileButton =
+    document.getElementById(
+        "changeProfileButton"
+    );
+
+const deleteProfileButton =
+    document.getElementById(
+        "deleteProfileButton"
+    );
+
+const profileUploadStatus =
+    document.getElementById(
+        "profileUploadStatus"
+    );
+
+
+function renderProfileImage() {
+
+    const saved =
+        localStorage.getItem(
+            PROFILE_IMAGE_KEY
+        );
+
+    if (
+        saved &&
+        saved.startsWith("data:image/")
+    ) {
+
+        profileImage.src =
+            saved;
+
+        profileImage.hidden =
+            false;
+
+        profileEmptyState.style.display =
+            "none";
+
+        return;
+
+    }
+
+    profileImage.removeAttribute(
+        "src"
+    );
+
+    profileImage.hidden =
+        true;
+
+    profileEmptyState.style.display =
+        "flex";
+
+}
+
+
+function deleteProfilePhoto() {
+
+    localStorage.removeItem(
+        PROFILE_IMAGE_KEY
+    );
+
+    renderProfileImage();
+
+    showStatus(
+        profileUploadStatus,
+        "PROFILE PHOTO DELETED.",
+        "success"
+    );
+
+}
+
+
+changeProfileButton.addEventListener(
+    "click",
+    function () {
+
+        profileImageInput.click();
+
+    }
+);
+
+
+profileImageInput.addEventListener(
+    "change",
+    async function () {
+
+        const file =
+            this.files &&
+            this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        clearStatus(
+            profileUploadStatus
+        );
+
+        if (
+            !file.type.startsWith("image/")
+        ) {
+
+            showStatus(
+                profileUploadStatus,
+                "PLEASE SELECT A VALID IMAGE FILE.",
+                "error"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+        if (
+            file.size >
+            10 * 1024 * 1024
+        ) {
+
+            showStatus(
+                profileUploadStatus,
+                "IMAGE MUST BE 10MB OR SMALLER.",
+                "error"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+        showStatus(
+            profileUploadStatus,
+            "PROCESSING PROFILE PHOTO...",
+            "success"
+        );
+
+        try {
+
+            const imageData =
+                await resizeImage(
+                    file,
+                    1200,
+                    1200,
+                    0.78
+                );
+
+            const saved =
+                safeSetItem(
+                    PROFILE_IMAGE_KEY,
+                    imageData
+                );
+
+            if (!saved) {
+
+                throw new Error(
+                    "Storage full."
+                );
+
+            }
+
+            renderProfileImage();
+
+            showStatus(
+                profileUploadStatus,
+                "PROFILE PHOTO UPLOADED SUCCESSFULLY.",
+                "success"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            showStatus(
+                profileUploadStatus,
+                "UPLOAD FAILED. BROWSER STORAGE MAY BE FULL.",
+                "error"
+            );
+
+        }
+
+        this.value = "";
+
+    }
+);
+
+
+deleteProfileButton.addEventListener(
+    "click",
+    function () {
+
+        if (
+            !localStorage.getItem(
+                PROFILE_IMAGE_KEY
+            )
+        ) {
+
+            showStatus(
+                profileUploadStatus,
+                "THERE IS NO PROFILE PHOTO TO DELETE.",
+                "error"
+            );
+
+            return;
+
+        }
+
+        openDeleteConfirmation(
+            "profile",
+            "profile"
+        );
+
+    }
+);
+
+
+/* =================================================
+   DEFAULT ACHIEVEMENT
+================================================= */
+
+const DEFAULT_ACHIEVEMENTS = [
+
+    {
+
+        id:
+            "achievement-original-post",
+
+        year:
+            "SENIOR HIGH SCHOOL",
+
+        title:
+            "BEST IN APPLICATION SYSTEM & BEST IN GAME APPLICATION",
+
+        description:
+            "Recognized for excellence in application and game development during my senior high school years. The achievement demonstrated creativity, technical skills, functionality, practical problem-solving, and the ability to develop working digital applications.\n\nEVALUATION PANEL:\nMr. Ced Falconite — Panelist\nMr. Erickson Catajan — Panelist\nSir Joven Bastasa — ICT Adviser",
+
+        image:
+            "",
+
+        createdAt:
+            "2026-01-01T00:00:00.000Z"
+
+    }
+
+];
+
+
+function getAchievements() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                ACHIEVEMENT_KEY
+            );
+
+        if (!saved) {
+            if (CURRENT_PORTFOLIO_USER === "matthaevs") {
+                saveAchievements(DEFAULT_ACHIEVEMENTS);
+                return [...DEFAULT_ACHIEVEMENTS];
+            }
+            return [];
+        }
+
+        const parsed =
+            JSON.parse(saved);
+
+        if (!Array.isArray(parsed)) {
+            return CURRENT_PORTFOLIO_USER === "matthaevs"
+                ? [...DEFAULT_ACHIEVEMENTS]
+                : [];
+        }
+
+        return parsed;
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load achievements:",
+            error
+        );
+
+        return CURRENT_PORTFOLIO_USER === "matthaevs"
+            ? [...DEFAULT_ACHIEVEMENTS]
+            : [];
+
+    }
+
+}
+
+
+function saveAchievements(
+    achievements
+) {
+
+    try {
+
+        localStorage.setItem(
+            ACHIEVEMENT_KEY,
+            JSON.stringify(
+                achievements
+            )
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Unable to save achievements:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =================================================
+   ESCAPE HTML
+================================================= */
+
+function escapeHTML(value) {
+
+    return String(
+        value ?? ""
+    )
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function createId(prefix) {
+
+    return (
+        prefix +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2, 9)
+    );
+
+}
+
+
+/* =================================================
+   ACHIEVEMENT ELEMENTS
+================================================= */
+
+const achievementFeed =
+    document.getElementById(
+        "achievementFeed"
+    );
+
+const postAchievementButton =
+    document.getElementById(
+        "postAchievementButton"
+    );
+
+const achievementModal =
+    document.getElementById(
+        "achievementModal"
+    );
+
+const achievementModalTitle =
+    document.getElementById(
+        "achievementModalTitle"
+    );
+
+const achievementModalClose =
+    document.getElementById(
+        "achievementModalClose"
+    );
+
+const achievementForm =
+    document.getElementById(
+        "achievementForm"
+    );
+
+const achievementYearInput =
+    document.getElementById(
+        "achievementYearInput"
+    );
+
+const achievementTitleInput =
+    document.getElementById(
+        "achievementTitleInput"
+    );
+
+const achievementDescriptionInput =
+    document.getElementById(
+        "achievementDescriptionInput"
+    );
+
+const achievementImageInput =
+    document.getElementById(
+        "achievementImageInput"
+    );
+
+const achievementImagePreview =
+    document.getElementById(
+        "achievementImagePreview"
+    );
+
+const achievementImageUploadLabel =
+    document.getElementById(
+        "achievementImageUploadLabel"
+    );
+
+const achievementUploadText =
+    document.getElementById(
+        "achievementUploadText"
+    );
+
+const achievementUploadStatus =
+    document.getElementById(
+        "achievementUploadStatus"
+    );
+
+const achievementSubmitButton =
+    document.getElementById(
+        "achievementSubmitButton"
+    );
+
+const achievementCancelButton =
+    document.getElementById(
+        "achievementCancelButton"
+    );
+
+
+let editingAchievementId =
+    null;
+
+let selectedAchievementImage =
+    "";
+
+
+/* =================================================
+   DELETE CONFIRMATION
+================================================= */
+
+const deleteConfirmModal =
+    document.getElementById(
+        "deleteConfirmModal"
+    );
+
+const deleteConfirmTitle =
+    document.getElementById(
+        "deleteConfirmTitle"
+    );
+
+const deleteConfirmMessage =
+    document.getElementById(
+        "deleteConfirmMessage"
+    );
+
+const deleteConfirmCancel =
+    document.getElementById(
+        "deleteConfirmCancel"
+    );
+
+const deleteConfirmDelete =
+    document.getElementById(
+        "deleteConfirmDelete"
+    );
+
+
+let pendingDeleteId =
+    null;
+
+let pendingDeleteType =
+    null;
+
+
+function openDeleteConfirmation(
+    id,
+    type
+) {
+
+    pendingDeleteId =
+        id;
+
+    pendingDeleteType =
+        type;
+
+
+    if (type === "achievement") {
+
+        deleteConfirmTitle.textContent =
+            "DELETE THIS ACHIEVEMENT?";
+
+        deleteConfirmMessage.textContent =
+            "Are you sure you want to delete this achievement? This action cannot be undone.";
+
+    } else if (type === "gallery") {
+
+        deleteConfirmTitle.textContent =
+            "DELETE THIS PHOTO?";
+
+        deleteConfirmMessage.textContent =
+            "Are you sure you want to delete this photo from your gallery? This action cannot be undone.";
+
+    } else if (type === "profile") {
+
+        deleteConfirmTitle.textContent =
+            "DELETE PROFILE PHOTO?";
+
+        deleteConfirmMessage.textContent =
+            "Are you sure you want to delete your profile photo? This action cannot be undone.";
+
+    } else if (type === "skill") {
+
+        deleteConfirmTitle.textContent =
+            "DELETE THIS SKILL?";
+
+        deleteConfirmMessage.textContent =
+            "Are you sure you want to delete this skill? This action cannot be undone.";
+
+    }
+
+
+    deleteConfirmModal.classList.add(
+        "active"
+    );
+
+    deleteConfirmModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeDeleteConfirmation() {
+
+    deleteConfirmModal.classList.remove(
+        "active"
+    );
+
+    deleteConfirmModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    pendingDeleteId =
+        null;
+
+    pendingDeleteType =
+        null;
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+deleteConfirmDelete.addEventListener(
+    "click",
+    function () {
+
+        if (
+            !pendingDeleteType
+        ) {
+
+            closeDeleteConfirmation();
+
+            return;
+
+        }
+
+
+        if (
+            pendingDeleteType ===
+            "achievement"
+        ) {
+
+            deleteAchievement(
+                pendingDeleteId
+            );
+
+        }
+
+
+        if (
+            pendingDeleteType ===
+            "gallery"
+        ) {
+
+            deleteGalleryPhoto(
+                pendingDeleteId
+            );
+
+        }
+
+
+        if (
+            pendingDeleteType ===
+            "profile"
+        ) {
+
+            deleteProfilePhoto();
+
+        }
+
+
+        if (
+            pendingDeleteType ===
+            "skill"
+        ) {
+
+            deleteSkill(
+                pendingDeleteId
+            );
+
+        }
+
+
+        closeDeleteConfirmation();
+
+    }
+);
+
+
+deleteConfirmCancel.addEventListener(
+    "click",
+    closeDeleteConfirmation
+);
+
+
+deleteConfirmModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            deleteConfirmModal
+        ) {
+
+            closeDeleteConfirmation();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   ACHIEVEMENT IMAGE PREVIEW
+================================================= */
+
+function resetAchievementImagePreview() {
+
+    selectedAchievementImage =
+        "";
+
+    achievementImagePreview.removeAttribute(
+        "src"
+    );
+
+    achievementImagePreview.hidden =
+        true;
+
+    achievementUploadText.style.display =
+        "flex";
+
+    achievementImageUploadLabel.classList.remove(
+        "has-image"
+    );
+
+    clearStatus(
+        achievementUploadStatus
+    );
+
+}
+
+
+function showAchievementImagePreview(
+    imageData
+) {
+
+    if (!imageData) {
+
+        resetAchievementImagePreview();
+
+        return;
+
+    }
+
+    selectedAchievementImage =
+        imageData;
+
+    achievementImagePreview.src =
+        imageData;
+
+    achievementImagePreview.hidden =
+        false;
+
+    achievementUploadText.style.display =
+        "none";
+
+    achievementImageUploadLabel.classList.add(
+        "has-image"
+    );
+
+}
+
+
+/* =================================================
+   OPEN ACHIEVEMENT MODAL
+================================================= */
+
+function openAchievementModal(
+    achievement = null
+) {
+
+    editingAchievementId =
+        achievement
+            ? achievement.id
+            : null;
+
+    achievementForm.reset();
+
+    clearStatus(
+        achievementUploadStatus
+    );
+
+
+    if (!achievement) {
+
+        achievementModalTitle.textContent =
+            "POST ACHIEVEMENT";
+
+        achievementSubmitButton.textContent =
+            "POST ACHIEVEMENT →";
+
+        resetAchievementImagePreview();
+
+    } else {
+
+        achievementModalTitle.textContent =
+            "CUSTOMIZE ACHIEVEMENT";
+
+        achievementSubmitButton.textContent =
+            "SAVE CHANGES →";
+
+        achievementYearInput.value =
+            achievement.year || "";
+
+        achievementTitleInput.value =
+            achievement.title || "";
+
+        achievementDescriptionInput.value =
+            achievement.description || "";
+
+
+        if (achievement.image) {
+
+            showAchievementImagePreview(
+                achievement.image
+            );
+
+        } else {
+
+            resetAchievementImagePreview();
+
+        }
+
+    }
+
+
+    achievementModal.classList.add(
+        "active"
+    );
+
+    achievementModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    setTimeout(
+        function () {
+
+            achievementYearInput.focus();
+
+        },
+        50
+    );
+
+}
+
+
+function closeAchievementModal() {
+
+    achievementModal.classList.remove(
+        "active"
+    );
+
+    achievementModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+    editingAchievementId =
+        null;
+
+    selectedAchievementImage =
+        "";
+
+    achievementForm.reset();
+
+    resetAchievementImagePreview();
+
+}
+
+
+/* =================================================
+   ACHIEVEMENT IMAGE SELECT
+================================================= */
+
+achievementImageInput.addEventListener(
+    "change",
+    async function () {
+
+        const file =
+            this.files &&
+            this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.type.startsWith("image/")
+        ) {
+
+            showStatus(
+                achievementUploadStatus,
+                "PLEASE SELECT A VALID IMAGE FILE.",
+                "error"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        if (
+            file.size >
+            10 * 1024 * 1024
+        ) {
+
+            showStatus(
+                achievementUploadStatus,
+                "IMAGE MUST BE 10MB OR SMALLER.",
+                "error"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        showStatus(
+            achievementUploadStatus,
+            "PROCESSING ACHIEVEMENT PHOTO...",
+            "success"
+        );
+
+
+        try {
+
+            const imageData =
+                await resizeImage(
+                    file,
+                    1600,
+                    1200,
+                    0.78
+                );
+
+            showAchievementImagePreview(
+                imageData
+            );
+
+            showStatus(
+                achievementUploadStatus,
+                "ACHIEVEMENT PHOTO READY.",
+                "success"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            showStatus(
+                achievementUploadStatus,
+                "UNABLE TO PROCESS THE IMAGE.",
+                "error"
+            );
+
+        }
+
+
+        this.value = "";
+
+    }
+);
+
+
+/* =================================================
+   RENDER ACHIEVEMENTS
+================================================= */
+
+function renderAchievementPosts() {
+
+    const achievements =
+        getAchievements();
+
+    achievementFeed.innerHTML =
+        "";
+
+
+    if (
+        achievements.length === 0
+    ) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        empty.className =
+            "achievement-empty";
+
+        empty.textContent =
+            "NO ACHIEVEMENTS YET — POST YOUR FIRST ACHIEVEMENT";
+
+        achievementFeed.appendChild(
+            empty
+        );
+
+        return;
+
+    }
+
+
+    achievements.forEach(
+        function (
+            achievement,
+            index
+        ) {
+
+            const post =
+                document.createElement(
+                    "article"
+                );
+
+            post.className =
+                "achievement-post";
+
+
+            const imageHTML =
+                achievement.image
+                    ? `
+                        <img
+                            src="${escapeHTML(
+                                achievement.image
+                            )}"
+                            alt="${escapeHTML(
+                                achievement.title
+                            )}"
+                        >
+                    `
+                    : `
+                        <div class="achievement-image-empty">
+
+                            <i class="bi bi-image"></i>
+
+                            <span>
+                                NO ACHIEVEMENT PHOTO
+                            </span>
+
+                        </div>
+                    `;
+
+
+            post.innerHTML = `
+
+                <div class="achievement-post-image">
+
+                    <span class="achievement-post-year">
+                        ${escapeHTML(
+                            achievement.year ||
+                            "ACHIEVEMENT"
+                        )}
+                    </span>
+
+                    ${imageHTML}
+
+                </div>
+
+                <div class="achievement-post-content">
+
+                    <span class="achievement-post-number">
+                        ${String(
+                            index + 1
+                        ).padStart(2, "0")}
+                    </span>
+
+                    <h3 class="achievement-post-title">
+                        ${escapeHTML(
+                            achievement.title
+                        )}
+                    </h3>
+
+                    <p class="achievement-post-description">
+                        ${escapeHTML(
+                            achievement.description
+                        )}
+                    </p>
+
+                    <div class="achievement-post-footer">
+
+                        <span class="achievement-post-type">
+                            ACHIEVEMENT POST
+                        </span>
+
+                        <div class="achievement-post-actions">
+
+                            <button
+                                type="button"
+                                class="achievement-customize-button">
+
+                                CUSTOMIZE →
+
+                            </button>
+
+                            <button
+                                type="button"
+                                class="achievement-delete-button">
+
+                                DELETE POST
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            post.querySelector(
+                ".achievement-customize-button"
+            ).addEventListener(
+                "click",
+                function () {
+
+                    openAchievementModal(
+                        achievement
+                    );
+
+                }
+            );
+
+
+            post.querySelector(
+                ".achievement-delete-button"
+            ).addEventListener(
+                "click",
+                function () {
+
+                    openDeleteConfirmation(
+                        achievement.id,
+                        "achievement"
+                    );
+
+                }
+            );
+
+
+            achievementFeed.appendChild(
+                post
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   DELETE ACHIEVEMENT
+================================================= */
+
+function deleteAchievement(
+    id
+) {
+
+    const achievements =
+        getAchievements();
+
+    const updated =
+        achievements.filter(
+            function (achievement) {
+
+                return (
+                    achievement.id !==
+                    id
+                );
+
+            }
+        );
+
+
+    if (
+        saveAchievements(
+            updated
+        )
+    ) {
+
+        renderAchievementPosts();
+
+    }
+
+}
+
+
+/* =================================================
+   ACHIEVEMENT SUBMIT
+================================================= */
+
+achievementForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const year =
+            achievementYearInput.value.trim();
+
+        const title =
+            achievementTitleInput.value.trim();
+
+        const description =
+            achievementDescriptionInput.value.trim();
+
+
+        if (!year) {
+
+            achievementYearInput.focus();
+
+            showStatus(
+                achievementUploadStatus,
+                "PLEASE ENTER THE ACADEMIC YEAR.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!title) {
+
+            achievementTitleInput.focus();
+
+            showStatus(
+                achievementUploadStatus,
+                "PLEASE ENTER THE ACHIEVEMENT TITLE.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!description) {
+
+            achievementDescriptionInput.focus();
+
+            showStatus(
+                achievementUploadStatus,
+                "PLEASE ENTER THE DESCRIPTION.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !selectedAchievementImage
+        ) {
+
+            showStatus(
+                achievementUploadStatus,
+                "PLEASE UPLOAD AN ACHIEVEMENT PHOTO.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const achievements =
+            getAchievements();
+
+
+        if (editingAchievementId) {
+
+            const index =
+                achievements.findIndex(
+                    function (item) {
+
+                        return (
+                            item.id ===
+                            editingAchievementId
+                        );
+
+                    }
+                );
+
+
+            if (index === -1) {
+
+                return;
+
+            }
+
+
+            achievements[index].year =
+                year;
+
+            achievements[index].title =
+                title;
+
+            achievements[index].description =
+                description;
+
+            achievements[index].image =
+                selectedAchievementImage;
+
+
+            if (
+                saveAchievements(
+                    achievements
+                )
+            ) {
+
+                closeAchievementModal();
+
+                renderAchievementPosts();
+
+            }
+
+            return;
+
+        }
+
+
+        achievements.push({
+
+            id:
+                createId(
+                    "achievement"
+                ),
+
+            year:
+                year,
+
+            title:
+                title,
+
+            description:
+                description,
+
+            image:
+                selectedAchievementImage,
+
+            createdAt:
+                new Date().toISOString()
+
+        });
+
+
+        if (
+            saveAchievements(
+                achievements
+            )
+        ) {
+
+            closeAchievementModal();
+
+            renderAchievementPosts();
+
+        }
+
+    }
+);
+
+
+postAchievementButton.addEventListener(
+    "click",
+    function () {
+
+        openAchievementModal();
+
+    }
+);
+
+
+achievementModalClose.addEventListener(
+    "click",
+    closeAchievementModal
+);
+
+
+achievementCancelButton.addEventListener(
+    "click",
+    closeAchievementModal
+);
+
+
+achievementModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            achievementModal
+        ) {
+
+            closeAchievementModal();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   GALLERY
+================================================= */
+
+const galleryModal =
+    document.getElementById(
+        "galleryModal"
+    );
+
+const uploadGalleryButton =
+    document.getElementById(
+        "uploadGalleryButton"
+    );
+
+const galleryModalClose =
+    document.getElementById(
+        "galleryModalClose"
+    );
+
+const galleryCancelButton =
+    document.getElementById(
+        "galleryCancelButton"
+    );
+
+const galleryForm =
+    document.getElementById(
+        "galleryForm"
+    );
+
+const imageInput =
+    document.getElementById(
+        "photoInput"
+    );
+
+const preview =
+    document.getElementById(
+        "photoPreview"
+    );
+
+const galleryImageUploadLabel =
+    document.getElementById(
+        "galleryImageUploadLabel"
+    );
+
+const galleryUploadText =
+    document.getElementById(
+        "galleryUploadText"
+    );
+
+const galleryUploadStatus =
+    document.getElementById(
+        "galleryUploadStatus"
+    );
+
+const captionInput =
+    document.getElementById(
+        "photoCaption"
+    );
+
+const photoGrid =
+    document.getElementById(
+        "photoGrid"
+    );
+
+
+let selectedGalleryImage =
+    "";
+
+
+/* =================================================
+   GET GALLERY
+================================================= */
+
+function getGallery() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                GALLERY_KEY
+            );
+
+
+        if (!saved) {
+            return [];
+        }
+
+
+        const parsed =
+            JSON.parse(saved);
+
+
+        if (!Array.isArray(parsed)) return [];
+        let changed = false;
+        parsed.forEach(item => { if (item && !item.createdAt) { item.createdAt = new Date().toISOString(); changed = true; } });
+        if (changed) saveGallery(parsed);
+        return parsed;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+function saveGallery(
+    items
+) {
+
+    try {
+
+        localStorage.setItem(
+            GALLERY_KEY,
+            JSON.stringify(items)
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.error(error);
+
+        return false;
+
+    }
+
+}
+
+
+/* =================================================
+   OPEN GALLERY MODAL
+================================================= */
+
+function openGalleryModal() {
+
+    galleryForm.reset();
+
+    selectedGalleryImage =
+        "";
+
+    preview.removeAttribute(
+        "src"
+    );
+
+    preview.hidden =
+        true;
+
+    galleryUploadText.style.display =
+        "flex";
+
+    galleryImageUploadLabel.classList.remove(
+        "has-image"
+    );
+
+    clearStatus(
+        galleryUploadStatus
+    );
+
+    galleryModal.classList.add(
+        "active"
+    );
+
+    galleryModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeGalleryModal() {
+
+    galleryModal.classList.remove(
+        "active"
+    );
+
+    galleryModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+uploadGalleryButton.addEventListener(
+    "click",
+    openGalleryModal
+);
+
+
+galleryModalClose.addEventListener(
+    "click",
+    closeGalleryModal
+);
+
+
+galleryCancelButton.addEventListener(
+    "click",
+    closeGalleryModal
+);
+
+
+galleryModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            galleryModal
+        ) {
+
+            closeGalleryModal();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   GALLERY IMAGE SELECT
+================================================= */
+
+imageInput.addEventListener(
+    "change",
+    async function () {
+
+        const file =
+            this.files &&
+            this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.type.startsWith("image/")
+        ) {
+
+            showStatus(
+                galleryUploadStatus,
+                "PLEASE SELECT A VALID IMAGE FILE.",
+                "error"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        if (
+            file.size >
+            10 * 1024 * 1024
+        ) {
+
+            showStatus(
+                galleryUploadStatus,
+                "IMAGE MUST BE 10MB OR SMALLER.",
+                "error"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        showStatus(
+            galleryUploadStatus,
+            "PROCESSING GALLERY IMAGE...",
+            "success"
+        );
+
+
+        try {
+
+            selectedGalleryImage =
+                await resizeImage(
+                    file,
+                    1400,
+                    1200,
+                    0.76
+                );
+
+
+            preview.src =
+                selectedGalleryImage;
+
+            preview.hidden =
+                false;
+
+            galleryUploadText.style.display =
+                "none";
+
+            galleryImageUploadLabel.classList.add(
+                "has-image"
+            );
+
+
+            showStatus(
+                galleryUploadStatus,
+                "IMAGE READY.",
+                "success"
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            selectedGalleryImage =
+                "";
+
+            showStatus(
+                galleryUploadStatus,
+                "UNABLE TO PROCESS THE IMAGE.",
+                "error"
+            );
+
+        }
+
+
+        this.value = "";
+
+    }
+);
+
+
+/* =================================================
+   RESET GALLERY
+================================================= */
+
+function resetGalleryUpload() {
+
+    selectedGalleryImage =
+        "";
+
+    imageInput.value =
+        "";
+
+    preview.removeAttribute(
+        "src"
+    );
+
+    preview.hidden =
+        true;
+
+    galleryUploadText.style.display =
+        "flex";
+
+    galleryImageUploadLabel.classList.remove(
+        "has-image"
+    );
+
+    captionInput.value =
+        "";
+
+    clearStatus(
+        galleryUploadStatus
+    );
+
+}
+
+
+/* =================================================
+   ADD GALLERY
+================================================= */
+
+galleryForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        if (
+            !selectedGalleryImage
+        ) {
+
+            showStatus(
+                galleryUploadStatus,
+                "PLEASE UPLOAD AN IMAGE FIRST.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const caption =
+            captionInput.value.trim();
+
+
+        if (!caption) {
+
+            captionInput.focus();
+
+            showStatus(
+                galleryUploadStatus,
+                "PLEASE ADD A BIO / CAPTION.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const photos =
+            getGallery();
+
+
+        photos.push({
+
+            id:
+                createId(
+                    "photo"
+                ),
+
+            image:
+                selectedGalleryImage,
+
+            caption:
+                caption,
+
+            createdAt:
+                new Date().toISOString()
+
+        });
+
+
+        if (
+            saveGallery(
+                photos
+            )
+        ) {
+
+            closeGalleryModal();
+
+            resetGalleryUpload();
+
+            renderGallery();
+
+        } else {
+
+            showStatus(
+                galleryUploadStatus,
+                "UPLOAD FAILED. BROWSER STORAGE MAY BE FULL.",
+                "error"
+            );
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   DELETE GALLERY
+================================================= */
+
+function deleteGalleryPhoto(
+    id
+) {
+
+    const photos =
+        getGallery();
+
+    const updated =
+        photos.filter(
+            function (photo) {
+
+                return (
+                    photo.id !==
+                    id
+                );
+
+            }
+        );
+
+
+    if (
+        saveGallery(
+            updated
+        )
+    ) {
+
+        renderGallery();
+
+    }
+
+}
+
+
+/* =================================================
+   RENDER GALLERY
+================================================= */
+
+function formatGalleryTime(iso) {
+    const time = new Date(iso || 0).getTime();
+    if (!time) return "";
+    const seconds = Math.max(0, Math.floor((Date.now() - time) / 1000));
+    if (seconds < 60) return "just now";
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return minutes + (minutes === 1 ? " min ago" : " mins ago");
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return hours + (hours === 1 ? " hour ago" : " hours ago");
+    const days = Math.floor(hours / 24);
+    if (days < 7) return days + (days === 1 ? " day ago" : " days ago");
+    return new Date(iso).toLocaleDateString();
+}
+
+function renderGallery() {
+
+    const photos =
+        getGallery();
+
+    photoGrid.innerHTML =
+        "";
+
+
+    if (
+        photos.length === 0
+    ) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        empty.className =
+            "gallery-empty-message";
+
+        empty.textContent =
+            "NO PHOTOS YET — CLICK UPLOAD GALLERY TO ADD YOUR FIRST MOMENT";
+
+        photoGrid.appendChild(
+            empty
+        );
+
+        return;
+
+    }
+
+
+    photos.forEach(
+        function (
+            photo,
+            index
+        ) {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "gallery-card";
+
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+            image.className =
+                "gallery-card-image";
+
+            image.src =
+                photo.image;
+
+            image.alt =
+                "Gallery photo " +
+                (index + 1);
+
+
+            const content =
+                document.createElement(
+                    "div"
+                );
+
+            content.className =
+                "gallery-card-content";
+
+
+            const number =
+                document.createElement(
+                    "span"
+                );
+
+            number.className =
+                "gallery-card-number";
+
+            number.textContent =
+                String(
+                    index + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const caption =
+                document.createElement(
+                    "p"
+                );
+
+            caption.className =
+                "gallery-card-caption";
+
+            caption.textContent =
+                photo.caption;
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.type =
+                "button";
+
+            deleteButton.className =
+                "gallery-delete-button";
+
+            deleteButton.textContent =
+                "DELETE PHOTO";
+
+
+            deleteButton.addEventListener(
+                "click",
+                function () {
+
+                    openDeleteConfirmation(
+                        photo.id,
+                        "gallery"
+                    );
+
+                }
+            );
+
+
+            content.appendChild(number);
+
+            const time = document.createElement("span");
+            time.className = "gallery-card-time";
+            time.textContent = formatGalleryTime(photo.createdAt);
+            content.appendChild(time);
+
+            content.appendChild(caption);
+
+            content.appendChild(
+                deleteButton
+            );
+
+
+            card.appendChild(
+                image
+            );
+
+            card.appendChild(
+                content
+            );
+
+
+            photoGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   SKILLS
+================================================= */
+
+const DEFAULT_SKILLS = [
+
+    {
+        id: "skill-html",
+        title: "HTML",
+        description: "Building and structuring websites."
+    },
+
+    {
+        id: "skill-css",
+        title: "CSS",
+        description: "Creating responsive and modern interfaces."
+    },
+
+    {
+        id: "skill-javascript",
+        title: "JAVASCRIPT",
+        description: "Adding interaction and functionality."
+    },
+
+    {
+        id: "skill-engineering",
+        title: "ENGINEERING",
+        description: "Exploring technology through practical projects and problem-solving."
+    }
+
+];
+
+
+const skillsList =
+    document.getElementById(
+        "skillsList"
+    );
+
+const skillsUploadButton =
+    document.getElementById(
+        "skillsUploadButton"
+    );
+
+const skillModal =
+    document.getElementById(
+        "skillModal"
+    );
+
+const skillModalTitle =
+    document.getElementById(
+        "skillModalTitle"
+    );
+
+const skillModalClose =
+    document.getElementById(
+        "skillModalClose"
+    );
+
+const skillForm =
+    document.getElementById(
+        "skillForm"
+    );
+
+const skillTitleInput =
+    document.getElementById(
+        "skillTitleInput"
+    );
+
+const skillDescriptionInput =
+    document.getElementById(
+        "skillDescriptionInput"
+    );
+
+const skillSubmitButton =
+    document.getElementById(
+        "skillSubmitButton"
+    );
+
+const skillCancelButton =
+    document.getElementById(
+        "skillCancelButton"
+    );
+
+
+let editingSkillId =
+    null;
+
+
+/* =================================================
+   GET SKILLS
+================================================= */
+
+function getSkills() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                SKILLS_KEY
+            );
+
+
+        /*
+         * Important:
+         * Only create defaults when the storage
+         * key does not exist.
+         *
+         * If the user deletes every skill,
+         * the empty array remains empty.
+         */
+
+        if (saved === null) {
+            if (CURRENT_PORTFOLIO_USER === "matthaevs") {
+                saveSkills(DEFAULT_SKILLS);
+                return [...DEFAULT_SKILLS];
+            }
+            return [];
+        }
+
+
+        const parsed =
+            JSON.parse(saved);
+
+
+        if (!Array.isArray(parsed)) {
+            return CURRENT_PORTFOLIO_USER === "matthaevs"
+                ? [...DEFAULT_SKILLS]
+                : [];
+        }
+
+
+        return parsed;
+
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load skills:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =================================================
+   SAVE SKILLS
+================================================= */
+
+function saveSkills(
+    skills
+) {
+
+    try {
+
+        localStorage.setItem(
+            SKILLS_KEY,
+            JSON.stringify(
+                skills
+            )
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Unable to save skills:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =================================================
+   OPEN SKILL MODAL
+================================================= */
+
+function openSkillModal(
+    skill = null
+) {
+
+    editingSkillId =
+        skill
+            ? skill.id
+            : null;
+
+
+    skillForm.reset();
+
+
+    if (skill) {
+
+        skillModalTitle.textContent =
+            "CUSTOMIZE SKILL";
+
+        skillSubmitButton.textContent =
+            "SAVE CHANGES →";
+
+        skillTitleInput.value =
+            skill.title || "";
+
+        skillDescriptionInput.value =
+            skill.description || "";
+
+    } else {
+
+        skillModalTitle.textContent =
+            "ADD SKILL";
+
+        skillSubmitButton.textContent =
+            "ADD SKILL →";
+
+    }
+
+
+    skillModal.classList.add(
+        "active"
+    );
+
+    skillModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    setTimeout(
+        function () {
+
+            skillTitleInput.focus();
+
+        },
+        50
+    );
+
+}
+
+
+/* =================================================
+   CLOSE SKILL MODAL
+================================================= */
+
+function closeSkillModal() {
+
+    skillModal.classList.remove(
+        "active"
+    );
+
+    skillModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+    editingSkillId =
+        null;
+
+    skillForm.reset();
+
+}
+
+
+/* =================================================
+   RENDER SKILLS
+================================================= */
+
+function renderSkills() {
+
+    const skills =
+        getSkills();
+
+
+    skillsList.innerHTML =
+        "";
+
+
+    if (
+        skills.length === 0
+    ) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        empty.className =
+            "achievement-empty";
+
+        empty.textContent =
+            "NO SKILLS YET — CLICK UPLOAD TO ADD YOUR FIRST SKILL";
+
+        skillsList.appendChild(
+            empty
+        );
+
+        return;
+
+    }
+
+
+    skills.forEach(
+        function (
+            skill,
+            index
+        ) {
+
+            const skillElement =
+                document.createElement(
+                    "div"
+                );
+
+            skillElement.className =
+                "skill";
+
+
+            skillElement.innerHTML = `
+
+                <span>
+                    ${String(
+                        index + 1
+                    ).padStart(2, "0")}
+                </span>
+
+                <div class="skill-content">
+
+                    <h2>
+                        ${escapeHTML(
+                            skill.title
+                        )}
+                    </h2>
+
+                    <p>
+                        ${escapeHTML(
+                            skill.description
+                        )}
+                    </p>
+
+                </div>
+
+                <div class="skill-actions">
+
+                    <button
+                        type="button"
+                        class="skill-action-button skill-edit-button"
+                        aria-label="Customize skill"
+                        title="Customize skill">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="skill-action-button skill-delete-button"
+                        aria-label="Delete skill"
+                        title="Delete skill">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const editButton =
+                skillElement.querySelector(
+                    ".skill-edit-button"
+                );
+
+
+            const deleteButton =
+                skillElement.querySelector(
+                    ".skill-delete-button"
+                );
+
+
+            editButton.addEventListener(
+                "click",
+                function () {
+
+                    openSkillModal(
+                        skill
+                    );
+
+                }
+            );
+
+
+            deleteButton.addEventListener(
+                "click",
+                function () {
+
+                    openDeleteConfirmation(
+                        skill.id,
+                        "skill"
+                    );
+
+                }
+            );
+
+
+            skillsList.appendChild(
+                skillElement
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   DELETE SKILL
+================================================= */
+
+function deleteSkill(
+    id
+) {
+
+    const skills =
+        getSkills();
+
+
+    const updated =
+        skills.filter(
+            function (skill) {
+
+                return (
+                    skill.id !==
+                    id
+                );
+
+            }
+        );
+
+
+    if (
+        saveSkills(
+            updated
+        )
+    ) {
+
+        renderSkills();
+
+    }
+
+}
+
+
+/* =================================================
+   SKILL FORM SUBMIT
+================================================= */
+
+skillForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const title =
+            skillTitleInput.value.trim();
+
+        const description =
+            skillDescriptionInput.value.trim();
+
+
+        if (!title) {
+
+            skillTitleInput.focus();
+
+            return;
+
+        }
+
+
+        if (!description) {
+
+            skillDescriptionInput.focus();
+
+            return;
+
+        }
+
+
+        const skills =
+            getSkills();
+
+
+        /* =================================================
+           EDIT EXISTING SKILL
+        ================================================= */
+
+        if (editingSkillId) {
+
+            const index =
+                skills.findIndex(
+                    function (skill) {
+
+                        return (
+                            skill.id ===
+                            editingSkillId
+                        );
+
+                    }
+                );
+
+
+            if (
+                index === -1
+            ) {
+
+                closeSkillModal();
+
+                return;
+
+            }
+
+
+            skills[index].title =
+                title;
+
+            skills[index].description =
+                description;
+
+
+            if (
+                saveSkills(
+                    skills
+                )
+            ) {
+
+                closeSkillModal();
+
+                renderSkills();
+
+            }
+
+
+            return;
+
+        }
+
+
+        /* =================================================
+           ADD NEW SKILL
+        ================================================= */
+
+        skills.push({
+
+            id:
+                createId(
+                    "skill"
+                ),
+
+            title:
+                title,
+
+            description:
+                description
+
+        });
+
+
+        if (
+            saveSkills(
+                skills
+            )
+        ) {
+
+            closeSkillModal();
+
+            renderSkills();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   SKILL BUTTONS
+================================================= */
+
+skillsUploadButton.addEventListener(
+    "click",
+    function () {
+
+        openSkillModal();
+
+    }
+);
+
+
+skillModalClose.addEventListener(
+    "click",
+    closeSkillModal
+);
+
+
+skillCancelButton.addEventListener(
+    "click",
+    closeSkillModal
+);
+
+
+skillModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            skillModal
+        ) {
+
+            closeSkillModal();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   ESCAPE KEY
+================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key !==
+            "Escape"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            achievementModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            closeAchievementModal();
+
+        }
+
+
+        if (
+            galleryModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            closeGalleryModal();
+
+        }
+
+
+        if (
+            skillModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            closeSkillModal();
+
+        }
+
+
+        if (
+            deleteConfirmModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            closeDeleteConfirmation();
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   INITIAL LOAD
+================================================= */
+
+renderProfileImage();
+
+renderAchievementPosts();
+
+renderGallery();
+
+renderSkills();
+
+})();
+
+</script>
+
+
+<!-- =====================================================
+EXISTING WEBSITE SCRIPTS
+===================================================== -->
+
+<script src="db-sync.js"></script>
+<script src="theme.js"></script>
+<script src="profile.js"></script>
+<script src="website-customizer.js"></script>
+
+<script src="about.js"></script>
+
+</body>
+
+</html>
+.gallery-card-time{display:block;color:#666;font-size:9px;letter-spacing:1px;margin:5px 0 12px}
